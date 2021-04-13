@@ -1,0 +1,107 @@
+{
+  "project_info": {
+    "project_number": "634453781423",
+    "firebase_url": "https://foods-delivery-app-6237m-default-rtdb.firebaseio.com",
+    "project_id": "foods-delivery-app-6237m",
+    "storage_bucket": "foods-delivery-app-6237m.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:634453781423:android:19a663ac9105cc9a5ddd5a",
+        "android_client_info": {
+          "package_name": "com.example.foodli"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "634453781423-d3jjeribmgu11cnbgp9g0psseu03m3c3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5Uck6ed1dd0v3Ug_JPPthTGxST_ihuXc"
+        },
+        {
+          "current_key": "AIzaSyCsAbEGo4xIvmJ6U85VNzgIhiSqMEVicmM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "634453781423-d3jjeribmgu11cnbgp9g0psseu03m3c3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:634453781423:android:5b3c614d8e58c4265ddd5a",
+        "android_client_info": {
+          "package_name": "com.example.foodliapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "634453781423-d3jjeribmgu11cnbgp9g0psseu03m3c3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5Uck6ed1dd0v3Ug_JPPthTGxST_ihuXc"
+        },
+        {
+          "current_key": "AIzaSyCsAbEGo4xIvmJ6U85VNzgIhiSqMEVicmM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "634453781423-d3jjeribmgu11cnbgp9g0psseu03m3c3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:634453781423:android:454906207fa968fd5ddd5a",
+        "android_client_info": {
+          "package_name": "com.example.foodliserver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "634453781423-d3jjeribmgu11cnbgp9g0psseu03m3c3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5Uck6ed1dd0v3Ug_JPPthTGxST_ihuXc"
+        },
+        {
+          "current_key": "AIzaSyCsAbEGo4xIvmJ6U85VNzgIhiSqMEVicmM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "634453781423-d3jjeribmgu11cnbgp9g0psseu03m3c3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

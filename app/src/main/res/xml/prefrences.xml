@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Change Theme">
+
+        <ListPreference
+            android:defaultValue="Light Mode"
+            android:entries="@array/theme_options"
+            android:entryValues="@array/theme_options"
+            android:key="color_choices"
+            android:summary="Choose your preferred theme mode"
+            android:title="Choose a theme" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Notifications">
+
+        <CheckBoxPreference
+            android:id="@+id/checkboxNotification"
+            android:defaultValue="false"
+            android:key="check_box_preference"
+            android:title="Show Notifications" />
+    </PreferenceCategory>
+</PreferenceScreen>
