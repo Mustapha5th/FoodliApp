@@ -13,12 +13,5 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="Notifications">
 
-        <CheckBoxPreference
-            android:id="@+id/checkboxNotification"
-            android:defaultValue="false"
-            android:key="check_box_preference"
-            android:title="Show Notifications"
-            android:summary="Enable or disable notifications"
-            />
     </PreferenceCategory>
 </PreferenceScreen>

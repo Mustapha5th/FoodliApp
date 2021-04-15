@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.CheckBox;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -28,7 +29,6 @@ import java.util.HashMap;
 
 public class MenuFragment extends Fragment  {
     // initialize variables
-
 
     FirebaseDatabase database;
     DatabaseReference category;

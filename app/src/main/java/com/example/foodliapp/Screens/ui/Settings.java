@@ -13,13 +13,14 @@ public class Settings extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new myPrefrenceFragment()).commit();
+        getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPrefrenceFragment()).commit();
     }
-    public static class myPrefrenceFragment extends PreferenceFragment{
+    public static class MyPrefrenceFragment extends PreferenceFragment{
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.prefrences);
+
         }
     }
 }

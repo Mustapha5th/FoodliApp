@@ -29,44 +29,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class Home extends AppCompatActivity {
 
 final int SETTINGS_ACTIVITY =1;
-CheckBox checkBox;
-
-    public static void exit(Activity activity) {
-        // Initialize alert dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setTitle("Exit");
-        builder.setMessage("Are you sure you want to exit app ?");
-        builder.setPositiveButton(Html.fromHtml("<font color= '#DE8405'>Yes</font>"), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Finish activity
-                activity.finishAffinity();
-                // Exit App
-                System.exit(0);
-            }
-        });
-        builder.setNegativeButton(Html.fromHtml("<font color= '#DE8405'>No</font>"), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        // show dialog
-        builder.show();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme();
         setContentView(R.layout.activity_home);
-
-
-
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -129,4 +102,29 @@ CheckBox checkBox;
             setTheme(R.style.Base_AppTheme_Dark);
         }
     }
+
+    public static void exit(Activity activity) {
+        // Initialize alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle("Exit");
+        builder.setMessage("Are you sure you want to exit app ?");
+        builder.setPositiveButton(Html.fromHtml("<font color= '#DE8405'>Yes</font>"), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Finish activity
+                activity.finishAffinity();
+                // Exit App
+                System.exit(0);
+            }
+        });
+        builder.setNegativeButton(Html.fromHtml("<font color= '#DE8405'>No</font>"), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        // show dialog
+        builder.show();
+    }
+
 }
