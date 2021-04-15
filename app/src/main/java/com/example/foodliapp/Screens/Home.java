@@ -97,7 +97,6 @@ CheckBox checkBox;
                  break;
             case R.id.menu_refresh:
                 Toast.makeText(this, "Set refresh", Toast.LENGTH_SHORT).show();
-
                 break;
             case R.id.menu_exit:
                 exit(this);
