@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -80,6 +81,7 @@ public class CartFragment extends Fragment {
     FirebaseDatabase database;
     DatabaseReference requests;
     Button btnPlaceOrder;
+    ImageButton btnDelete;
     APIService mService;
     SwipeRefreshLayout swipeRefreshLayout;
     String address, comment;
@@ -143,6 +145,13 @@ public class CartFragment extends Fragment {
         });
 
 
+        btnDelete = root.findViewById(R.id.btnDelete);
+//        btnDelete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                deleteCart();
+//            }
+//        });
 
         return root;
     }
@@ -159,10 +168,10 @@ public class CartFragment extends Fragment {
         // remove item at list order
         cart.remove(position);
         // delete all old data from sql
-        new Database(getContext()).cleanCart();
+        new Database(requireActivity()).cleanCart();
         // update new data from list order in SqL
         for (Order item:cart){
-            new Database(requireContext()).addToCart(item);
+            new Database(requireActivity()).addToCart(item);
             // refresh food list
             loadListFood();
         }
