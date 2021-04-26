@@ -56,14 +56,6 @@
             app:finalNumber="20"
             app:initialNumber="1"
             app:textSize="5sp" />
-        <ImageButton
-            android:id="@+id/btnDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:background="@color/white"
-            android:src="@drawable/ic_baseline_delete"
-            app:tint="@color/colorPrimaryDark"/>
 
 
     </LinearLayout>

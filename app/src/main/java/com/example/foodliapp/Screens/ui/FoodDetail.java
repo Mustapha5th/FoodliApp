@@ -75,12 +75,13 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
             @Override
             public void onClick(View v) {
                 new Database(getBaseContext()).addToCart(new Order(
-                                foodId,
-                                currentFood.getName(),
-                                numberButton.getNumber(),
-                                currentFood.getPrice(),
-                                currentFood.getDiscount(),
-                                currentFood.getImage()
+                    Common.currentUser.getPhone(),
+                    foodId,
+                    currentFood.getName(),
+                    numberButton.getNumber(),
+                    currentFood.getPrice(),
+                    currentFood.getDiscount(),
+                    currentFood.getImage()
 
                         )
                 );
@@ -156,7 +157,6 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
                 .create(FoodDetail.this)
                 .show();
     }
-
     private void getDetailFood(String foodId) {
         foods.child(foodId).addValueEventListener(new ValueEventListener() {
             @Override

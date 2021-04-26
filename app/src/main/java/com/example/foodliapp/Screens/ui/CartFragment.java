@@ -145,7 +145,7 @@ public class CartFragment extends Fragment {
         });
 
 
-        btnDelete = root.findViewById(R.id.btnDelete);
+//        btnDelete = root.findViewById(R.id.btnDelete);
 //        btnDelete.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -168,10 +168,10 @@ public class CartFragment extends Fragment {
         // remove item at list order
         cart.remove(position);
         // delete all old data from sql
-        new Database(requireActivity()).cleanCart();
+        new Database(getContext()).cleanCart(Common.currentUser.getPhone());
         // update new data from list order in SqL
         for (Order item:cart){
-            new Database(requireActivity()).addToCart(item);
+            new Database(getContext()).addToCart(item);
             // refresh food list
             loadListFood();
         }
@@ -208,7 +208,7 @@ public class CartFragment extends Fragment {
                 requests.child(order_number)
                         .setValue(request);
                 //Delete cart
-                new Database(requireContext()).cleanCart();
+                new Database(requireContext()).cleanCart(Common.currentUser.getPhone());
                 sendNotificationOrder(order_number);
 
 
@@ -297,7 +297,7 @@ public class CartFragment extends Fragment {
                         requests.child(order_number)
                                 .setValue(request);
                         //Delete cart
-                        new Database(requireContext()).cleanCart();
+                        new Database(requireContext()).cleanCart(Common.currentUser.getPhone());
                         sendNotificationOrder(order_number);
                         Toast.makeText(getContext(), "Thank You, Order is Placed", Toast.LENGTH_SHORT).show();
                         requireActivity().recreate();
@@ -330,7 +330,7 @@ public class CartFragment extends Fragment {
                             requests.child(order_number)
                                     .setValue(request);
                             //Delete cart
-                            new Database(requireContext()).cleanCart();
+                            new Database(requireContext()).cleanCart(Common.currentUser.getPhone());
                             // update balance
                             double balance = Common.currentUser.getBalance() - amount;
                             Map<String ,Object> update_balance = new HashMap<>();
@@ -436,7 +436,7 @@ public class CartFragment extends Fragment {
     }
 
     private void loadListFood() {
-        cart = new Database(requireContext()).getCart();
+        cart = new Database(requireContext()).getCart(Common.currentUser.getPhone());
         adapter = new CartAdapter(cart, this);
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
