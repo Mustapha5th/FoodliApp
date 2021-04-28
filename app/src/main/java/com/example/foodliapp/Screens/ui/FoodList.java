@@ -237,6 +237,7 @@ public class FoodList extends AppCompatActivity {
         adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int i, @NonNull Food food) {
+                if (new Database(getBaseContext()).checkFoodExists(adapter.getRef(i).getKey(),Common.currentUser.getPhone()));
                 foodViewHolder.food_name.setText(food.getName());
                 foodViewHolder.food_price.setText(String.format("₦ %s", food.getPrice()));
                 Picasso.get().load(food.getImage()).into(foodViewHolder.food_image);
@@ -246,6 +247,7 @@ public class FoodList extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         new Database(getBaseContext()).addToCart(new Order(
+                                Common.currentUser.getPhone(),
                                 adapter.getRef(i).getKey(),
                                 food.getName(),
                                 "1",

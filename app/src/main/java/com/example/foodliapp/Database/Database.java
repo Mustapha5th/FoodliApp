@@ -96,6 +96,17 @@ public class Database extends SQLiteAssetHelper {
         }
         return count;
     }
+    public boolean checkFoodExists(String foodId, String userPhone){
+        boolean flag = false;
+        SQLiteDatabase database = getReadableDatabase();
+       Cursor cursor = null;
+       String SQLQuery =  String.format("SELECT * FROM OrderDetail WHERE UserPhone ='%s' AND ProductID='%s'", userPhone,foodId);
+       cursor = database.rawQuery(SQLQuery,null);
+        flag = cursor.getCount() > 0;
+       cursor.close();
+
+       return flag;
+    }
 
     public void updateCart(Order order) {
         SQLiteDatabase db = getReadableDatabase();

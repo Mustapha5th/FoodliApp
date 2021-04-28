@@ -104,7 +104,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
                 // update total
                 int total = 0;
                 // Calculate total price
-                List<Order> orders = new Database(cartFragment.getContext()).getCart();
+                List<Order> orders = new Database(cartFragment.getContext()).getCart(Common.currentUser.getPhone());
                 for (Order item:orders)
                     total +=(Integer.parseInt(order.getPrice())) * (Integer.parseInt(item.getQuantity()));
                 Locale locale = new Locale("en","NG");
