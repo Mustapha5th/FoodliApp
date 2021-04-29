@@ -3,16 +3,17 @@ package com.example.foodliapp.Screens.ui;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -27,6 +29,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.foodliapp.Common.Common;
 import com.example.foodliapp.Common.Config;
 import com.example.foodliapp.Database.Database;
+import com.example.foodliapp.Helper.RecyclerItemTouchHelper;
+import com.example.foodliapp.Interface.RecyclerItemTouchHelperListener;
 import com.example.foodliapp.Model.MyResponse;
 import com.example.foodliapp.Model.Notification;
 import com.example.foodliapp.Model.Order;
@@ -37,8 +41,10 @@ import com.example.foodliapp.Model.User;
 import com.example.foodliapp.R;
 import com.example.foodliapp.Remote.APIService;
 import com.example.foodliapp.ViewHolder.CartAdapter;
+import com.example.foodliapp.ViewHolder.CartViewHolder;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -69,7 +75,7 @@ import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
 
-public class CartFragment extends Fragment {
+public class CartFragment extends Fragment implements RecyclerItemTouchHelperListener {
     // PayPal payment
     static PayPalConfiguration config = new PayPalConfiguration()
             .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX) // using sandbox
@@ -88,32 +94,34 @@ public class CartFragment extends Fragment {
     List<Order> cart = new ArrayList<>();
     CartAdapter adapter;
 
+    RelativeLayout rootLayout;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
          View root = inflater.inflate(R.layout.fragment_cart, container, false);
 
         // swipe to refresh
-        swipeRefreshLayout = root.findViewById(R.id.swipe_layout);
-        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark,
-                R.color.red,
-                R.color.colorPrimaryDarkNight,
-                R.color.green,
-                R.color.blue
-        );
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                loadListFood();
-            }
-        });
-
-        swipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                loadListFood();
-
-            }
-        });
+//        swipeRefreshLayout = root.findViewById(R.id.swipe_layout);
+//        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark,
+//                R.color.red,
+//                R.color.colorPrimaryDarkNight,
+//                R.color.green,
+//                R.color.blue
+//        );
+//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                loadListFood();
+//            }
+//        });
+//
+//        swipeRefreshLayout.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                loadListFood();
+//
+//            }
+//        });
          // init Paypal
         Intent intent = new Intent(getContext(), PayPalService.class);
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
@@ -124,6 +132,11 @@ public class CartFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
         requests = database.getReference("Requests");
 
+        rootLayout = root.findViewById(R.id.rootLayout);
+
+        //Swipe to delete
+        ItemTouchHelper.SimpleCallback itemTouchHelper = new RecyclerItemTouchHelper(0,ItemTouchHelper.LEFT,this);
+        new ItemTouchHelper(itemTouchHelper).attachToRecyclerView(recyclerView);
         // Init
         recyclerView = root.findViewById(R.id.listCart);
         recyclerView.setHasFixedSize(true);
@@ -144,6 +157,7 @@ public class CartFragment extends Fragment {
             }
         });
 
+        loadListFood();
 
 //        btnDelete = root.findViewById(R.id.btnDelete);
 //        btnDelete.setOnClickListener(new View.OnClickListener() {
@@ -156,27 +170,27 @@ public class CartFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public boolean onContextItemSelected(@NonNull MenuItem item) {
-        if (item.equals(Common.DELETE)){
-            deleteCart(item.getOrder());
-        }
-        return true;
-    }
+//    @Override
+//    public boolean onContextItemSelected(@NonNull MenuItem item) {
+//        if (item.equals(Common.DELETE)){
+//            deleteCart(item.getOrder());
+//        }
+//        return true;
+//    }
 
-    private void deleteCart(int position) {
-        // remove item at list order
-        cart.remove(position);
-        // delete all old data from sql
-        new Database(getContext()).cleanCart(Common.currentUser.getPhone());
-        // update new data from list order in SqL
-        for (Order item:cart){
-            new Database(getContext()).addToCart(item);
-            // refresh food list
-            loadListFood();
-        }
-        adapter.notifyDataSetChanged();
-    }
+//    private void deleteCart(int position) {
+//        // remove item at list order
+//        cart.remove(position);
+//        // delete all old data from sql
+//        new Database(getContext()).cleanCart(Common.currentUser.getPhone());
+//        // update new data from list order in SqL
+//        for (Order item:cart){
+//            new Database(getContext()).addToCart(item);
+//            // refresh food list
+//            loadListFood();
+//        }
+//        adapter.notifyDataSetChanged();
+//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -253,10 +267,10 @@ public class CartFragment extends Fragment {
                 address = edtAddress.getText().toString();
                 comment = edtComment.getText().toString();
                 if (address.isEmpty() ){
-                    Toast.makeText(getContext(), "Please enter your delivery address", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Please enter your delivery address", Toast.LENGTH_LONG).show();
                 }else {
                     if (!rdiCOD.isChecked() && !rdiPaypal.isChecked() && !rdiFoodliBalance.isChecked()) {
-                        Toast.makeText(getContext(), "Please select payment option", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Please select payment option", Toast.LENGTH_LONG).show();
                     }
                     else if (rdiPaypal.isChecked()) {
                         String formatAmount = txtTotal.getText().toString()
@@ -321,7 +335,8 @@ public class CartFragment extends Fragment {
                                     "0",
                                     "Paid",
                                     "Foodli Balance",
-                                    comment,cart
+                                    comment,
+                                    cart
 
                             );
                             // Submit to Firebase
@@ -449,7 +464,7 @@ public class CartFragment extends Fragment {
              NumberFormat format = NumberFormat.getCurrencyInstance(locale);
 
         txtTotal.setText(format.format(total));
-        swipeRefreshLayout.setRefreshing(false);
+       // swipeRefreshLayout.setRefreshing(false);
 
     }
     @Override
@@ -457,4 +472,46 @@ public class CartFragment extends Fragment {
         super.onStop();
     }
 
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
+        if (viewHolder instanceof CartViewHolder){
+            String name =  ((CartAdapter)recyclerView.getAdapter()).getItem(viewHolder.getAdapterPosition()).getProductName();
+            Order deleteItem = ((CartAdapter)recyclerView.getAdapter()).getItem(viewHolder.getAdapterPosition());
+            int deleteIndex = viewHolder.getAdapterPosition();
+            adapter.removeItem(deleteIndex);
+            new Database(getContext()).deleteFromCart(deleteItem.getProductId(),Common.currentUser.getPhone());
+            //
+            // update total
+            int total = 0;
+            // Calculate total price
+            List<Order> orders = new Database(getContext()).getCart(Common.currentUser.getPhone());
+            for (Order item:orders)
+                total +=(Integer.parseInt(item.getPrice())) * (Integer.parseInt(item.getQuantity()));
+            Locale locale = new Locale("en","NG");
+            NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+
+            txtTotal.setText(format.format(total));
+
+            Snackbar snackbar = Snackbar.make(rootLayout, name +" removed from cart", Snackbar.LENGTH_LONG);
+            snackbar.setAction("UNDO", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    adapter.restoredItem(deleteItem,deleteIndex);
+                    new Database(getContext()).addToCart(deleteItem);
+                    // update total
+                    int total = 0;
+                    // Calculate total price
+                    List<Order> orders = new Database(getContext()).getCart(Common.currentUser.getPhone());
+                    for (Order item:orders)
+                        total +=(Integer.parseInt(item.getPrice())) * (Integer.parseInt(item.getQuantity()));
+                    Locale locale = new Locale("en","NG");
+                    NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+
+                    txtTotal.setText(format.format(total));
+                }
+            });
+            snackbar.setActionTextColor(Color.YELLOW);
+            snackbar.show();
+        }
+    }
 }

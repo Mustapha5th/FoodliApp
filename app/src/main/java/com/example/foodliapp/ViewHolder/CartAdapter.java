@@ -1,18 +1,13 @@
 package com.example.foodliapp.ViewHolder;
 
-import android.view.ContextMenu;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
-import com.example.foodliapp.Common.Common;
-import com.example.foodliapp.Database.Database;
-import com.example.foodliapp.Interface.ItemClickListener;
+import com.amulyakhare.textdrawable.TextDrawable;
 import com.example.foodliapp.Model.Order;
 import com.example.foodliapp.R;
 import com.example.foodliapp.Screens.ui.CartFragment;
@@ -25,43 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener{
-
-    public TextView txt_cart_name, txt_price;
-    public ImageView img_cart_count;
-    public ElegantNumberButton btn_quantity;
-    public ImageView cart_image;
-    private ItemClickListener itemClickListener;
-
-    public CartViewHolder( View itemView) {
-        super(itemView);
-        txt_cart_name =  itemView.findViewById(R.id.cart_item_name);
-        txt_price = itemView.findViewById(R.id.cart_item_price);
-        btn_quantity = itemView.findViewById(R.id.btn_quantity);
-        cart_image = itemView.findViewById(R.id.cart_image);
-
-        itemView.setOnCreateContextMenuListener(this);
-
-
-    }
-
-    public void setTxt_cart_name(TextView txt_cart_name) {
-        this.txt_cart_name = txt_cart_name;
-    }
-
-    @Override
-    public void onClick(View v) {
-
-    }
-
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-
-        menu.setHeaderTitle("Select action");
-        menu.add(0,0,getAdapterPosition(), Common.DELETE);
-
-    }
-}
 
 public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
 
@@ -84,36 +42,36 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
 
     @Override
     public void onBindViewHolder(CartViewHolder holder, int position) {
-//        TextDrawable drawable = TextDrawable.builder()
-//                .buildRound(""+listData.get(position).getQuantity(), Color.RED);
-//        holder.img_cart_count.setImageDrawable(drawable);
+        TextDrawable drawable = TextDrawable.builder()
+                .buildRound(""+listData.get(position).getQuantity(), Color.RED);
+        holder.img_cart_item_count.setImageDrawable(drawable);
 
         Picasso.get().load(listData.get(position).getImage())
                 .centerCrop()
                 .resize(70,70)
                 .into(holder.cart_image);
 
-        holder.btn_quantity.setNumber(listData.get(position).getQuantity());
-        holder.btn_quantity.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
-            @Override
-            public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
-                Order order = listData.get(position);
-                order.setQuantity(String.valueOf(newValue));
-                new Database(cartFragment.requireContext()).updateCart(order);
-
-                // update total
-                int total = 0;
-                // Calculate total price
-                List<Order> orders = new Database(cartFragment.getContext()).getCart(Common.currentUser.getPhone());
-                for (Order item:orders)
-                    total +=(Integer.parseInt(order.getPrice())) * (Integer.parseInt(item.getQuantity()));
-                Locale locale = new Locale("en","NG");
-                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
-
-                cartFragment.txtTotal.setText(format.format(total));
-
-            }
-        });
+//        holder.btn_quantity.setNumber(listData.get(position).getQuantity());
+//        holder.btn_quantity.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
+//            @Override
+//            public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
+//                Order order = listData.get(position);
+//                order.setQuantity(String.valueOf(newValue));
+//                new Database(cartFragment.requireContext()).updateCart(order);
+//
+//                // update total
+//                int total = 0;
+//                // Calculate total price
+//                List<Order> orders = new Database(cartFragment.getContext()).getCart(Common.currentUser.getPhone());
+//                for (Order item:orders)
+//                    total +=(Integer.parseInt(order.getPrice())) * (Integer.parseInt(item.getQuantity()));
+//                Locale locale = new Locale("en","NG");
+//                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+//
+//                cartFragment.txtTotal.setText(format.format(total));
+//
+//            }
+//        });
         Locale locale = new Locale("en","NG");
         NumberFormat format = NumberFormat.getCurrencyInstance(locale);
         int price = (Integer.parseInt(listData.get(position).getPrice())) * (Integer.parseInt(listData.get(position).getQuantity())) ;
@@ -126,5 +84,17 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
     @Override
     public int getItemCount() {
         return listData.size();
+    }
+    public Order getItem(int position){
+        return listData.get(position);
+    }
+
+    public void removeItem(int position){
+        listData.remove(position);
+        notifyItemRemoved(position);
+    }
+    public void restoredItem(Order item,int position){
+        listData.add(position,item);
+        notifyItemInserted(position);
     }
 }

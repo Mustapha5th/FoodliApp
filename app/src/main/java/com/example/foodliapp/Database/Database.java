@@ -102,15 +102,27 @@ public class Database extends SQLiteAssetHelper {
        Cursor cursor = null;
        String SQLQuery =  String.format("SELECT * FROM OrderDetail WHERE UserPhone ='%s' AND ProductID='%s'", userPhone,foodId);
        cursor = database.rawQuery(SQLQuery,null);
+
         flag = cursor.getCount() > 0;
        cursor.close();
 
        return flag;
     }
-
+    public void deleteFromCart(String productId, String phone) {
+        SQLiteDatabase database = getReadableDatabase();
+        String query = String.format("DELETE FROM OrderDetail WHERE UserPhone='%s' AND ProductID='%s'", phone, productId);
+        database.execSQL(query);
+    }
     public void updateCart(Order order) {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("UPDATE OrderDetail SET Quantity='%s' WHERE UserPhone = '%s' AND ProductID='%s", order.getQuantity(),order.getUserPhone());
+        String query = String.format("UPDATE OrderDetail SET Quantity='%s' WHERE UserPhone = '%s' AND ProductID='%s", order.getQuantity(),order.getUserPhone(),order.getProductId());
         db.execSQL(query);
     }
+    public void increaseCart(String userPhone, String foodId) {
+        SQLiteDatabase db = getReadableDatabase();
+        String query = String.format("UPDATE OrderDetail SET Quantity = Quantity+1 WHERE UserPhone = '%s' AND ProductID='%s", userPhone,foodId);
+        db.execSQL(query);
+    }
+
+
 }

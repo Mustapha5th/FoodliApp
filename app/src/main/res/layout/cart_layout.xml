@@ -6,8 +6,34 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardElevation="5dp">
+<RelativeLayout
+    android:id="@+id/view_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="@color/red">
+<ImageView
+    android:id="@+id/delete_icon"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_alignParentEnd="true"
+    android:layout_centerVertical="true"
+    android:src="@drawable/ic_baseline_delete_forever"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:layout_toStartOf="@id/delete_icon"
+        android:text="Delete"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        />
 
+</RelativeLayout>
     <LinearLayout
+        android:id="@+id/view_foreground"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -46,16 +72,25 @@
                 android:textAllCaps="true"
                 android:textStyle="italic"/>
         </LinearLayout>
-        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-            android:id="@+id/btn_quantity"
-            android:layout_width="115dp"
+        <ImageView
+            android:id="@+id/img_cart_item_count"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:layout_margin="10dp"
-            app:backGroundColor="@color/colorPrimary"
-            app:finalNumber="20"
-            app:initialNumber="1"
-            app:textSize="5sp" />
+             />
+
+
+        <!--        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton-->
+<!--            android:id="@+id/btn_quantity"-->
+<!--            android:layout_width="115dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:layout_margin="10dp"-->
+<!--            app:backGroundColor="@color/colorPrimary"-->
+<!--            app:finalNumber="20"-->
+<!--            app:initialNumber="1"-->
+<!--            app:textSize="5sp" />-->
 
 
     </LinearLayout>
