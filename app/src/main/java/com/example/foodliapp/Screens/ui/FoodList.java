@@ -247,8 +247,7 @@ public class FoodList extends AppCompatActivity {
 
                     @Override
                     public void onClick(View v) {
-                        boolean isExist = new Database(getBaseContext()).checkFoodExists(adapter.getRef(i).getKey(),Common.currentUser.getPhone());
-                        if (isExist) {
+
                             new Database(getBaseContext()).addToCart(new Order(
                                             Common.currentUser.getPhone(),
                                             adapter.getRef(i).getKey(),
@@ -259,14 +258,12 @@ public class FoodList extends AppCompatActivity {
                                             food.getImage()
                                     )
                             );
-
-
-                        }else{
-                            new Database(getBaseContext()).increaseCart(Common.currentUser.getPhone(),adapter.getRef(i).getKey());
-                        }
                         Toast.makeText(getBaseContext(), "Added to Cart", Toast.LENGTH_SHORT).show();
 
-                    }
+                        }
+
+
+
                 });
 
                 //add favorites
