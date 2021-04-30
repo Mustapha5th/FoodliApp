@@ -47,14 +47,18 @@ public class Database extends SQLiteAssetHelper {
     }
     public void addToCart(Order order){
         SQLiteDatabase database = getReadableDatabase();
-        String query = String.format("INSERT OR REPLACE INTO OrderDetail(UserPhone,ProductID,ProductName,Quantity,Price,Discount,Image) VALUES('%s','%s','%s','%s','%s','%s','%s');",
-                order.getUserPhone(),
-                order.getProductId(),
-                order.getProductName(),
-                order.getQuantity(),
-                order.getPrice(),
-                order.getDiscount(),
-                order.getImage());
+
+        // deleted query
+        //String query = String.format("INSERT OR REPLACE INTO OrderDetail(UserPhone,ProductID,ProductName,Quantity,Price,Discount,Image) VALUES('%s','%s','%s','%s','%s','%s','%s');",
+
+        String query = String.format("INSERT INTO OrderDetail(UserPhone,ProductID,ProductName,Quantity,Price,Discount,Image) VALUES('%s','%s','%s','%s','%s','%s','%s');",
+        order.getUserPhone(),
+        order.getProductId(),
+        order.getProductName(),
+        order.getQuantity(),
+        order.getPrice(),
+        order.getDiscount(),
+        order.getImage());
         database.execSQL(query);
     }
     public void cleanCart(String userPhone){
