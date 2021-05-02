@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".Screens.ui.FavoriteFragment">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_height="match_parent"
             android:id="@+id/recycler_fav"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/searchBar" />
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            android:layout_margin="5dp" />
+</RelativeLayout>

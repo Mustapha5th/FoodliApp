@@ -14,7 +14,7 @@ import com.example.foodliapp.R;
 public class FavoritesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     public TextView food_name, food_price;
-    public ImageView food_image, favIcon, addToCartIcon;
+    public ImageView food_image, addToCartIcon;
     public RelativeLayout view_background;
     public LinearLayout view_foreground;
     private ItemClickListener itemClickListener;

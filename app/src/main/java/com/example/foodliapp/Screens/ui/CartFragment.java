@@ -416,7 +416,6 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
              NumberFormat format = NumberFormat.getCurrencyInstance(locale);
 
         txtTotal.setText(format.format(total));
-       // swipeRefreshLayout.setRefreshing(false);
 
     }
     @Override

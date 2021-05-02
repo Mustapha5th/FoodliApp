@@ -51,9 +51,7 @@ public class Database extends SQLiteAssetHelper {
 
         // deleted query
         String query = String.format("INSERT OR REPLACE INTO OrderDetail(UserPhone,ProductID,ProductName,Quantity,Price,Discount,Image) VALUES('%s','%s','%s','%s','%s','%s','%s');",
-
-//        String query = String.format("INSERT INTO OrderDetail(UserPhone,ProductID,ProductName,Quantity,Price,Discount,Image) VALUES('%s','%s','%s','%s','%s','%s','%s');",
-        order.getUserPhone(),
+       order.getUserPhone(),
         order.getProductId(),
         order.getProductName(),
         order.getQuantity(),
@@ -150,7 +148,6 @@ public class Database extends SQLiteAssetHelper {
         if (cursor.moveToFirst()){
             do {
                 result.add(new Favorites(
-
                         cursor.getString(cursor.getColumnIndex("foodId")),
                         cursor.getString(cursor.getColumnIndex("foodName")),
                         cursor.getString(cursor.getColumnIndex("foodPrice")),

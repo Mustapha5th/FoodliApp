@@ -22,8 +22,13 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesViewHolder> {
-    private Context context;
-    private List<Favorites> favoritesList;
+    private final Context context;
+    private final List<Favorites> favoritesList;
+
+    public FavoritesAdapter(Context context, List<Favorites> favoritesList) {
+        this.context = context;
+        this.favoritesList = favoritesList;
+    }
 
     @NonNull
     @Override
@@ -76,7 +81,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesViewHolder> 
             public void onClick(View view, int position, boolean isLongClick) {
                 // Start new Activity
                 Intent foodDetail = new Intent(context, FoodDetail.class);
-                foodDetail.putExtra("CategoryId", favoritesList.get(position).getFoodId());// send food id to new activity
+                foodDetail.putExtra("FoodId", favoritesList.get(position).getFoodId());// send food id to new activity
                 context.startActivity(foodDetail);
             }
         });
@@ -93,5 +98,8 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesViewHolder> 
     @Override
     public int getItemCount() {
         return favoritesList.size();
+    }
+    public Favorites getItem(int position){
+        return favoritesList.get(position);
     }
 }
