@@ -100,28 +100,7 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
                              ViewGroup container, Bundle savedInstanceState) {
          View root = inflater.inflate(R.layout.fragment_cart, container, false);
 
-        // swipe to refresh
-//        swipeRefreshLayout = root.findViewById(R.id.swipe_layout);
-//        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark,
-//                R.color.red,
-//                R.color.colorPrimaryDarkNight,
-//                R.color.green,
-//                R.color.blue
-//        );
-//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                loadListFood();
-//            }
-//        });
-//
-//        swipeRefreshLayout.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                loadListFood();
-//
-//            }
-//        });
+
          // init Paypal
         Intent intent = new Intent(getContext(), PayPalService.class);
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
@@ -160,38 +139,10 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
 
         loadListFood();
 
-//        btnDelete = root.findViewById(R.id.btnDelete);
-//        btnDelete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                deleteCart();
-//            }
-//        });
-
         return root;
     }
 
-//    @Override
-//    public boolean onContextItemSelected(@NonNull MenuItem item) {
-//        if (item.equals(Common.DELETE)){
-//            deleteCart(item.getOrder());
-//        }
-//        return true;
-//    }
 
-//    private void deleteCart(int position) {
-//        // remove item at list order
-//        cart.remove(position);
-//        // delete all old data from sql
-//        new Database(getContext()).cleanCart(Common.currentUser.getPhone());
-//        // update new data from list order in SqL
-//        for (Order item:cart){
-//            new Database(getContext()).addToCart(item);
-//            // refresh food list
-//            loadListFood();
-//        }
-//        adapter.notifyDataSetChanged();
-//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodliapp.Common.Common;
 import com.example.foodliapp.Database.Database;
 import com.example.foodliapp.Interface.ItemClickListener;
+import com.example.foodliapp.Model.Favorites;
 import com.example.foodliapp.Model.Food;
 import com.example.foodliapp.Model.Order;
 import com.example.foodliapp.R;
@@ -230,8 +231,19 @@ public class SearchActivity extends AppCompatActivity {
                 foodViewHolder.favIcon.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Favorites favorites = new Favorites();
+
+                        favorites.setFoodId(adapter.getRef(i).getKey());
+                        favorites.setFoodName(food.getName());
+                        favorites.setFoodDescription(food.getDescription());
+                        favorites.setFoodDiscount(food.getDiscount());
+                        favorites.setFoodImage(food.getImage());
+                        favorites.setFoodMenuId(food.getMenuId());
+                        favorites.setUserPhone(Common.currentUser.getPhone());
+                        favorites.setFoodPrice(food.getPrice());
+
                         if (!localDB.isFavorites(adapter.getRef(i).getKey(), Common.currentUser.getPhone())){
-                            localDB.addToFavorites(adapter.getRef(i).getKey(), Common.currentUser.getPhone());
+                            localDB.addToFavorites(favorites);
                             foodViewHolder.favIcon.setImageResource(R.drawable.ic_baseline_favorite);
                             Toast.makeText(SearchActivity.this, ""+food.getName()+" was added to favorites", Toast.LENGTH_SHORT).show();
                         }

@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 
+import com.example.foodliapp.Model.Favorites;
 import com.example.foodliapp.Model.Order;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
@@ -67,9 +68,17 @@ public class Database extends SQLiteAssetHelper {
         database.execSQL(query);
     }
     // Favorites
-    public void addToFavorites(String foodId, String userPhone){
+    public void addToFavorites(Favorites food){
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("INSERT INTO Favorites(foodId, userPhone) VALUES('%s', '%s')", foodId,userPhone);
+        String query = String.format("INSERT INTO Favorites(foodId,foodName,foodPrice,foodMenuId,foodImage,foodDiscount,foodDescription, userPhone) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+                food.getFoodId(),
+                food.getFoodName(),
+                food.getFoodPrice(),
+                food.getFoodMenuId(),
+                food.getFoodImage(),
+                food.getFoodDiscount(),
+                food.getFoodDescription(),
+                food.getUserPhone());
         db.execSQL(query);
     }
     public void deleteFromFavorites(String foodId, String userPhone){
@@ -128,5 +137,32 @@ public class Database extends SQLiteAssetHelper {
         db.execSQL(query);
     }
 
+    public List<Favorites> getAllFavorites(String userPhone){
+        SQLiteDatabase database = getReadableDatabase();
+        SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
 
+        String[] sqlSelect = {"foodId","foodName", "foodPrice", "foodMenuId", "foodImage", "foodDiscount", "foodDescription","userPhone"};
+        String sqlTable = "Favorites";
+
+        queryBuilder.setTables(sqlTable);
+        Cursor cursor = queryBuilder.query(database, sqlSelect,"userPhone=?",new String[]{userPhone},null,null,null);
+        final List<Favorites> result = new ArrayList<>();
+        if (cursor.moveToFirst()){
+            do {
+                result.add(new Favorites(
+
+                        cursor.getString(cursor.getColumnIndex("foodId")),
+                        cursor.getString(cursor.getColumnIndex("foodName")),
+                        cursor.getString(cursor.getColumnIndex("foodPrice")),
+                        cursor.getString(cursor.getColumnIndex("foodMenuId")),
+                        cursor.getString(cursor.getColumnIndex("foodImage")),
+                        cursor.getString(cursor.getColumnIndex("foodDiscount")),
+                        cursor.getString(cursor.getColumnIndex("foodDescription")),
+                        cursor.getString(cursor.getColumnIndex("userPhone"))
+                ));
+            }while (cursor.moveToNext());
+        }
+        return result;
+
+    }
 }
