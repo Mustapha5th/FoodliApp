@@ -134,14 +134,15 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
 
         rootLayout = root.findViewById(R.id.rootLayout);
 
-        //Swipe to delete
-        ItemTouchHelper.SimpleCallback itemTouchHelper = new RecyclerItemTouchHelper(0,ItemTouchHelper.LEFT,this);
-        new ItemTouchHelper(itemTouchHelper).attachToRecyclerView(recyclerView);
-        // Init
+         // Init
         recyclerView = root.findViewById(R.id.listCart);
         recyclerView.setHasFixedSize(true);
         manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
+
+        //Swipe to delete
+        ItemTouchHelper.SimpleCallback itemTouchHelper = new RecyclerItemTouchHelper(0,ItemTouchHelper.LEFT,this);
+        new ItemTouchHelper(itemTouchHelper).attachToRecyclerView(recyclerView);
 
 
         txtTotal = root.findViewById(R.id.txtTotal);
@@ -325,7 +326,7 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
                         // get total price
                          amount = Double.parseDouble(formatAmount);
                         // Check user balance
-                        if (Common.currentUser.getBalance() >= amount){
+                        if (Double.parseDouble(Common.currentUser.getBalance().toString()) >= amount){
                             // create new request
                             Request request = new Request(
                                     Common.currentUser.getPhone(),
@@ -347,7 +348,7 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
                             //Delete cart
                             new Database(requireContext()).cleanCart(Common.currentUser.getPhone());
                             // update balance
-                            double balance = Common.currentUser.getBalance() - amount;
+                            double balance = Double.parseDouble(Common.currentUser.getBalance().toString()) - amount;
                             Map<String ,Object> update_balance = new HashMap<>();
                             update_balance.put("balance", balance);
                             FirebaseDatabase.getInstance()
@@ -493,6 +494,7 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
             txtTotal.setText(format.format(total));
 
             Snackbar snackbar = Snackbar.make(rootLayout, name +" removed from cart", Snackbar.LENGTH_LONG);
+            snackbar.setAnchorView(R.id.nav_view);
             snackbar.setAction("UNDO", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

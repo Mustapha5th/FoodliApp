@@ -6,7 +6,16 @@ public class User {
     private String Phone;
     private String isStaff;
     private String secureCode;
-    private double balance;
+
+    private Object balance;
+
+    public Object getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Object balance) {
+        this.balance = balance;
+    }
 
 
     public User() {
@@ -59,14 +68,6 @@ public class User {
 
     public void setIsStaff(String isStaff) {
         this.isStaff = isStaff;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
     }
 
 }

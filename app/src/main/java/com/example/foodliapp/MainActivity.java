@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                         mDialog.dismiss();
                         User user = snapshot.child(phone).getValue(User.class);
                         user.setPhone(phone);//get phone number
+                        user.setBalance(String.valueOf(0.0));
                         if (user.getPassword().equals(password)) {
                             Intent home = new Intent(MainActivity.this, Home.class);
 

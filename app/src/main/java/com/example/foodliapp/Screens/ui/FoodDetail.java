@@ -74,6 +74,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         fbtnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 new Database(getBaseContext()).addToCart(new Order(
                     Common.currentUser.getPhone(),
                     foodId,

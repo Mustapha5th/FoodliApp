@@ -10,8 +10,6 @@ import android.preference.PreferenceManager;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.CheckBox;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,12 +22,12 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.foodliapp.Common.Common;
 import com.example.foodliapp.Model.Token;
 import com.example.foodliapp.R;
+import com.example.foodliapp.Screens.ui.SearchActivity;
 import com.example.foodliapp.Screens.ui.Settings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 public class Home extends AppCompatActivity {
 
@@ -68,8 +66,8 @@ final int SETTINGS_ACTIVITY =1;
             case R.id.menu_settings:
                 startActivityForResult(new Intent(this, Settings.class), SETTINGS_ACTIVITY);
                  break;
-            case R.id.menu_refresh:
-                Toast.makeText(this, "Set refresh", Toast.LENGTH_SHORT).show();
+            case R.id.menu_search:
+                startActivity(new Intent(Home.this, SearchActivity.class));
                 break;
             case R.id.menu_exit:
                 exit(this);

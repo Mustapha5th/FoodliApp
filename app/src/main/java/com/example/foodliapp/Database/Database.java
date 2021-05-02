@@ -49,9 +49,9 @@ public class Database extends SQLiteAssetHelper {
         SQLiteDatabase database = getReadableDatabase();
 
         // deleted query
-        //String query = String.format("INSERT OR REPLACE INTO OrderDetail(UserPhone,ProductID,ProductName,Quantity,Price,Discount,Image) VALUES('%s','%s','%s','%s','%s','%s','%s');",
+        String query = String.format("INSERT OR REPLACE INTO OrderDetail(UserPhone,ProductID,ProductName,Quantity,Price,Discount,Image) VALUES('%s','%s','%s','%s','%s','%s','%s');",
 
-        String query = String.format("INSERT INTO OrderDetail(UserPhone,ProductID,ProductName,Quantity,Price,Discount,Image) VALUES('%s','%s','%s','%s','%s','%s','%s');",
+//        String query = String.format("INSERT INTO OrderDetail(UserPhone,ProductID,ProductName,Quantity,Price,Discount,Image) VALUES('%s','%s','%s','%s','%s','%s','%s');",
         order.getUserPhone(),
         order.getProductId(),
         order.getProductName(),
@@ -124,7 +124,7 @@ public class Database extends SQLiteAssetHelper {
     }
     public void increaseCart(String userPhone, String foodId) {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("UPDATE OrderDetail SET Quantity = Quantity+1 WHERE UserPhone = '%s' AND ProductID='%s", userPhone,foodId);
+        String query = String.format("UPDATE OrderDetail SET Quantity = Quantity+1 WHERE UserPhone = '%s' AND ProductID='%s'", userPhone,foodId);
         db.execSQL(query);
     }
 
