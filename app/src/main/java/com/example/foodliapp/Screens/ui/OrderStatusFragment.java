@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -12,12 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.foodliapp.Common.Common;
-import com.example.foodliapp.Interface.ItemClickListener;
 import com.example.foodliapp.Model.Request;
 import com.example.foodliapp.R;
 import com.example.foodliapp.ViewHolder.OrderViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -78,12 +80,16 @@ public class OrderStatusFragment extends Fragment {
                 orderViewHolder.txtOrderStatus.setText(Common.convertCodeToStatus(request.getStatus()));
                 orderViewHolder.txtOrderAddress.setText(request.getAddress());
                 orderViewHolder.txtOrderPhone.setText(request.getPhone());
-                orderViewHolder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-
-                    }
-                });
+              orderViewHolder.btn_delete.setOnClickListener(new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                      if (adapter.getItem(i).getStatus().equals("0")){
+                          deleteOrder(adapter.getRef(i).getKey());
+                      }else {
+                          Toast.makeText(getContext(), "Sorry Order have already been sent", Toast.LENGTH_SHORT).show();
+                      }
+                  }
+              });
             }
 
 
@@ -99,6 +105,21 @@ public class OrderStatusFragment extends Fragment {
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
         swipeRefreshLayout.setRefreshing(false);
+    }
+
+    private void deleteOrder(String key) {
+        requests.child(key).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(getContext(), new StringBuilder("Order ").append(key).append(" has been deleted").toString(), Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
     @Override
