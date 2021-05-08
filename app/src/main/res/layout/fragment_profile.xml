@@ -4,43 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".Screens.ui.ProfileFragment">
 
-    <ImageView
-        android:id="@+id/ivUser"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:src="@drawable/user"/>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-
-</LinearLayout>
     <TextView
         android:id="@+id/txtFullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
         android:layout_marginBottom="5dp"
+        android:layout_marginTop="70dp"
         android:text="Mustapha"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textStyle="bold"/>
     <TextView
         android:id="@+id/txtPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:text="123456789"
-        android:textSize="15sp"
+        android:textSize="25sp"
         android:textStyle="bold"/>
 
     <View
@@ -125,13 +111,13 @@
         android:layout_marginEnd="15dp"
         android:background="@android:color/darker_gray"
         android:padding="20dp"/>
-    <CheckBox
-       android:layout_marginStart="20dp"
-        android:id="@+id/chkNotification"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Notifications"
-        android:textColor="@color/colorPrimaryDark"/>
+<!--    <CheckBox-->
+<!--       android:layout_marginStart="20dp"-->
+<!--        android:id="@+id/chkNotification"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Notifications"-->
+<!--        android:textColor="@color/colorPrimaryDark"/>-->
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
@@ -244,7 +230,7 @@
         android:padding="20dp"/>
     <Button
         android:id="@+id/btnLogout"
-        android:layout_width="140dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_margin="10dp"

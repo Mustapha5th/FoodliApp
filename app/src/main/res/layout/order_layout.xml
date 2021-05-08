@@ -60,8 +60,8 @@
         </LinearLayout>
         <ImageView
             android:id="@+id/btn_delete"
-            android:layout_width="40dp"
-            android:layout_height="50dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:src="@drawable/ic_baseline_delete"/>

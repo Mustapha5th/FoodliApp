@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +25,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.HashMap;
@@ -47,7 +45,7 @@ public class ProfileFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        chkNotification = root.findViewById(R.id.chkNotification);
+//        chkNotification = root.findViewById(R.id.chkNotification);
 
         txtFullName = root.findViewById(R.id.txtFullName);
         txtFullName.setText(Common.currentUser.getName());
@@ -71,18 +69,19 @@ public class ProfileFragment extends Fragment {
             }
         });
         txtItemBought = root.findViewById(R.id.txtItemBought);
+
         txtFavItems = root.findViewById(R.id.txtFavItems);
 
-        String isSubscribe = Paper.book().read("sub_news");
-        if (isSubscribe == null || TextUtils.isEmpty(isSubscribe) || isSubscribe.equals(false)){
-            chkNotification.setChecked(false);
-            FirebaseMessaging.getInstance().unsubscribeFromTopic(Common.topicName);
-            Paper.book().write("sub_news", "false");
-        }else {
-            chkNotification.setChecked(true);
-            FirebaseMessaging.getInstance().subscribeToTopic(Common.topicName);
-            Paper.book().write("sub_news", "true");
-        }
+//        String isSubscribe = Paper.book().read("sub_news");
+//        if (isSubscribe == null || TextUtils.isEmpty(isSubscribe) || isSubscribe.equals(false)){
+//            chkNotification.setChecked(false);
+//            FirebaseMessaging.getInstance().unsubscribeFromTopic(Common.topicName);
+//            Paper.book().write("sub_news", "false");
+//        }else {
+//            chkNotification.setChecked(true);
+//            FirebaseMessaging.getInstance().subscribeToTopic(Common.topicName);
+//            Paper.book().write("sub_news", "true");
+//        }
 
         btnLogout = root.findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(new View.OnClickListener() {
