@@ -229,7 +229,7 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
                                 .replace("₦", "")
                                 .replace(",", "");
 
-                        PayPalPayment payment = new PayPalPayment(new BigDecimal(formatAmount), "USD",
+                        PayPalPayment payment = new PayPalPayment(new BigDecimal(formatAmount), "NG",
                                 "Foodli App Order",
                                 PayPalPayment.PAYMENT_INTENT_SALE);
                         Intent intent = new Intent(getActivity().getApplicationContext(), PaymentActivity.class);

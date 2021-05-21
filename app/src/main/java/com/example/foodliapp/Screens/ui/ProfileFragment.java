@@ -37,7 +37,7 @@ public class ProfileFragment extends Fragment {
     Button btnLogout;
     CheckBox chkNotification;
 
-    TextView txtFullName, txtPhone, txtChangePassword,txtEditProfile,txtItemBought,txtFavItems;
+    TextView txtFullName, txtPhone,txtBalance, txtChangePassword,txtEditProfile,txtItemBought,txtFavItems;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -50,17 +50,19 @@ public class ProfileFragment extends Fragment {
         txtFullName = root.findViewById(R.id.txtFullName);
         txtFullName.setText(Common.currentUser.getName());
 
+        txtBalance = root.findViewById(R.id.txtBalance);
+        txtBalance.setText(String.format("₦ %s", Common.currentUser.getBalance()));
         txtPhone = root.findViewById(R.id.txtPhone);
         txtPhone.setText(Common.currentUser.getPhone());
 
         Paper.init(requireContext());
-        txtEditProfile = root.findViewById(R.id.txtEditProfile);
-        txtEditProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        txtEditProfile = root.findViewById(R.id.txtEditProfile);
+//        txtEditProfile.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
         txtChangePassword = root.findViewById(R.id.txtChangePassword);
         txtChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
