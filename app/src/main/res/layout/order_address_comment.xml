@@ -33,7 +33,7 @@
                 android:id="@+id/edtComment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Comment"
+                android:hint="additional information"
                 android:inputType="textMultiLine"
                 android:text=""
                 android:textColor="@color/colorPrimaryDark"

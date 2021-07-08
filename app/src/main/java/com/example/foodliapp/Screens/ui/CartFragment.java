@@ -81,7 +81,7 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
             .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX) // using sandbox
             .clientId(Config.PAY_CLIENT_ID);
     private final int PAYPAL_REQUEST_CODE = 500;
-    public TextView txtTotal;
+    public TextView txtTotal, txtSwipeDelete;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager manager;
     FirebaseDatabase database;
@@ -119,6 +119,10 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
         manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
 
+        txtSwipeDelete = root.findViewById(R.id.txtSwipeToDelete);
+        if (cart.size() == 0){
+            txtSwipeDelete.setText("Your cart is empty");
+        }
         //Swipe to delete
         ItemTouchHelper.SimpleCallback itemTouchHelper = new RecyclerItemTouchHelper(0,ItemTouchHelper.LEFT,this);
         new ItemTouchHelper(itemTouchHelper).attachToRecyclerView(recyclerView);
@@ -229,7 +233,7 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
                                 .replace("₦", "")
                                 .replace(",", "");
 
-                        PayPalPayment payment = new PayPalPayment(new BigDecimal(formatAmount), "NG",
+                        PayPalPayment payment = new PayPalPayment(new BigDecimal(formatAmount), "USD",
                                 "Foodli App Order",
                                 PayPalPayment.PAYMENT_INTENT_SALE);
                         Intent intent = new Intent(getActivity().getApplicationContext(), PaymentActivity.class);

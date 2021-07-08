@@ -74,25 +74,25 @@
                 android:textAllCaps="true"
                 android:textStyle="italic"/>
         </LinearLayout>
-        <ImageView
-            android:id="@+id/img_cart_item_count"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="10dp"
-             />
-
-
-        <!--        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton-->
-<!--            android:id="@+id/btn_quantity"-->
-<!--            android:layout_width="115dp"-->
+<!--        <ImageView-->
+<!--            android:id="@+id/img_cart_item_count"-->
+<!--            android:layout_width="40dp"-->
 <!--            android:layout_height="40dp"-->
 <!--            android:layout_gravity="center_vertical"-->
 <!--            android:layout_margin="10dp"-->
-<!--            app:backGroundColor="@color/colorPrimary"-->
-<!--            app:finalNumber="20"-->
-<!--            app:initialNumber="1"-->
-<!--            app:textSize="5sp" />-->
+<!--             />-->
+
+
+        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+            android:id="@+id/btn_quantity"
+            android:layout_width="115dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            app:backGroundColor="@color/colorPrimary"
+            app:finalNumber="20"
+            app:initialNumber="1"
+            app:textSize="5sp" />
 
 
     </LinearLayout>

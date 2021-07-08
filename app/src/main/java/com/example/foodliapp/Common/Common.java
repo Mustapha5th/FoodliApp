@@ -34,9 +34,13 @@ public class Common {
         if (status.equals("0"))
             return "Placed";
         else if (status.equals("1"))
-            return "On my way";
+            return "Processing";
+        else if (status.equals("2"))
+            return "Processed";
+        else if (status.equals("3"))
+            return "On it's way";
         else
-            return "delivered";
+            return "Delivered";
 
     }
 

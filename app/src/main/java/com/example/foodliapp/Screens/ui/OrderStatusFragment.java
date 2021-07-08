@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,7 @@ import com.google.firebase.database.Query;
 public class OrderStatusFragment extends Fragment {
     public RecyclerView recyclerView;
     public RecyclerView.LayoutManager manager;
+    TextView txtNotifer;
     FirebaseRecyclerAdapter<Request, OrderViewHolder> adapter;
 
     SwipeRefreshLayout swipeRefreshLayout;
@@ -86,7 +88,7 @@ public class OrderStatusFragment extends Fragment {
                       if (adapter.getItem(i).getStatus().equals("0")){
                           deleteOrder(adapter.getRef(i).getKey());
                       }else {
-                          Toast.makeText(getContext(), "Sorry Order have already been sent", Toast.LENGTH_SHORT).show();
+                          Toast.makeText(getContext(), "Sorry Order have already been processed you cannot delete the Order", Toast.LENGTH_SHORT).show();
                       }
                   }
               });

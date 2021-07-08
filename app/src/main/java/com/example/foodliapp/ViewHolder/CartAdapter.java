@@ -1,13 +1,14 @@
 package com.example.foodliapp.ViewHolder;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.amulyakhare.textdrawable.TextDrawable;
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.foodliapp.Common.Common;
+import com.example.foodliapp.Database.Database;
 import com.example.foodliapp.Model.Order;
 import com.example.foodliapp.R;
 import com.example.foodliapp.Screens.ui.CartFragment;
@@ -42,40 +43,41 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
 
     @Override
     public void onBindViewHolder(CartViewHolder holder, int position) {
-        TextDrawable drawable = TextDrawable.builder()
-                .buildRound(""+listData.get(position).getQuantity(), Color.RED);
-        holder.img_cart_item_count.setImageDrawable(drawable);
-
+//        TextDrawable drawable = TextDrawable.builder()
+//                .buildRound(""+listData.get(position).getQuantity(), Color.RED);
+//        holder.img_cart_item_count.setImageDrawable(drawable);
+//
         Picasso.get().load(listData.get(position).getImage())
                 .centerCrop()
                 .resize(70,70)
                 .into(holder.cart_image);
 
-//        holder.btn_quantity.setNumber(listData.get(position).getQuantity());
-//        holder.btn_quantity.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
-//            @Override
-//            public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
-//                Order order = listData.get(position);
-//                order.setQuantity(String.valueOf(newValue));
-//                new Database(cartFragment.requireContext()).updateCart(order);
-//
-//                // update total
-//                int total = 0;
-//                // Calculate total price
-//                List<Order> orders = new Database(cartFragment.getContext()).getCart(Common.currentUser.getPhone());
-//                for (Order item:orders)
-//                    total +=(Integer.parseInt(order.getPrice())) * (Integer.parseInt(item.getQuantity()));
-//                Locale locale = new Locale("en","NG");
-//                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
-//
-//                cartFragment.txtTotal.setText(format.format(total));
-//
-//            }
-//        });
-        Locale locale = new Locale("en","NG");
-        NumberFormat format = NumberFormat.getCurrencyInstance(locale);
-        int price = (Integer.parseInt(listData.get(position).getPrice())) * (Integer.parseInt(listData.get(position).getQuantity())) ;
-        holder.txt_price.setText(format.format(price));
+        holder.btn_quantity.setNumber(listData.get(position).getQuantity());
+        holder.btn_quantity.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
+            @Override
+            public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
+                Order order = listData.get(position);
+                order.setQuantity(String.valueOf(newValue));
+                new Database(cartFragment.requireContext()).updateCart(order);
+
+                // update total
+                int total = 0;
+                // Calculate total price
+                List<Order> orders = new Database(cartFragment.getContext()).getCart(Common.currentUser.getPhone());
+                for (Order item:orders)
+                    total +=(Integer.parseInt(order.getPrice())) * (Integer.parseInt(item.getQuantity()));
+                Locale locale = new Locale("en","NG");
+                NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+                cartFragment.txtTotal.setText(format.format(total));
+
+                int price = (Integer.parseInt(listData.get(position).getPrice())) * (Integer.parseInt(listData.get(position).getQuantity())) ;
+                holder.txt_price.setText(format.format(price));
+            }
+        });
+//        Locale locale = new Locale("en","NG");
+//        NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+//        int price = (Integer.parseInt(listData.get(position).getPrice())) * (Integer.parseInt(listData.get(position).getQuantity())) ;
+//        holder.txt_price.setText(format.format(price));
         holder.txt_cart_name.setText(listData.get(position).getProductName());
 
 

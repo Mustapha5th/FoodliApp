@@ -28,8 +28,8 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         super(itemView);
         txt_cart_name =  itemView.findViewById(R.id.cart_item_name);
         txt_price = itemView.findViewById(R.id.cart_item_price);
-        img_cart_item_count = itemView.findViewById(R.id.img_cart_item_count);
-        // btn_quantity = itemView.findViewById(R.id.btn_quantity);
+       // img_cart_item_count = itemView.findViewById(R.id.img_cart_item_count);
+         btn_quantity = itemView.findViewById(R.id.btn_quantity);
         cart_image = itemView.findViewById(R.id.cart_image);
 
         view_background = itemView.findViewById(R.id.view_background);

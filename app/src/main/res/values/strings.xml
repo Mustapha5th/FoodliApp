@@ -119,4 +119,5 @@
     <string name="confirmpassword">Confirm Password</string>
     <string name="oldpassword">Old Password</string>
     <string name="search">Search</string>
+    <string name="swipe_left_to_delete_cart_item"><![CDATA[<--Swipe left to delete cart item--]]></string>
 </resources>

@@ -126,7 +126,7 @@ public class Database extends SQLiteAssetHelper {
     }
     public void updateCart(Order order) {
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("UPDATE OrderDetail SET Quantity='%s' WHERE UserPhone = '%s' AND ProductID='%s", order.getQuantity(),order.getUserPhone(),order.getProductId());
+        String query = String.format("UPDATE OrderDetail SET Quantity='%s' WHERE UserPhone = '%s' AND ProductID='%s'", order.getQuantity(),order.getUserPhone(),order.getProductId());
         db.execSQL(query);
     }
     public void increaseCart(String userPhone, String foodId) {

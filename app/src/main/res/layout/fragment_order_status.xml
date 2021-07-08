@@ -10,15 +10,23 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listOrders"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent">
             </androidx.recyclerview.widget.RecyclerView>
+    <TextView
+        android:id="@+id/txtNotifier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/listOrders"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="10dp"
+        android:text=""
+        android:textSize="16sp" />
 </RelativeLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
