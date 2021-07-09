@@ -82,7 +82,7 @@ public class FavoriteFragment extends Fragment implements RecyclerItemTouchHelpe
             adapter.removeItem(viewHolder.getAdapterPosition());
             new Database(getContext()).deleteFromFavorites(deleteItem.getFoodId(), Common.currentUser.getPhone());
 
-            Snackbar snackbar = Snackbar.make(rootLayout, name +" removed from cart", Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(rootLayout, name +" removed from favorite", Snackbar.LENGTH_LONG);
             snackbar.setAnchorView(R.id.nav_view);
             snackbar.setAction("UNDO", new View.OnClickListener() {
                 @Override

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.example.foodliapp.Common.Common;
 import com.example.foodliapp.Model.User;
 import com.example.foodliapp.R;
 import com.example.foodliapp.Screens.Home;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,12 +38,15 @@ public class Login extends AppCompatActivity {
     CheckBox checkBoxRemember;
     FirebaseDatabase database;
     DatabaseReference table_user;
+    RelativeLayout rootLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         edtPhone = findViewById(R.id.edtPhone);
         edtPassword = findViewById(R.id.edtPassword);
+        rootLayout = findViewById(R.id.root_layout);
 
 //        txtLogin = findViewById(R.id.txtLogin);
 //        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Caroline.otf");
@@ -71,7 +76,10 @@ public class Login extends AppCompatActivity {
         // init Firebase
         database = FirebaseDatabase.getInstance();
         table_user = database.getReference("User");
-
+        if (!Common.isConnectedToInternet(getBaseContext())) {
+            Toast.makeText(Login.this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+            return;
+        }
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,10 +129,8 @@ public class Login extends AppCompatActivity {
                     });
                 }
                 else {
-
-                    // TO DO: convert to snack bar ...
-                    Toast.makeText(Login.this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
-                    return;
+                    Snackbar snackbar = Snackbar.make(rootLayout,"Please check your internet connection", Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 }
             }
 

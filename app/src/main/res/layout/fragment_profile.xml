@@ -11,37 +11,74 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
-    <TextView
-        android:id="@+id/txtBalance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="5dp"
-        android:text="₦0.00"
-        android:textSize="40sp"
-        android:textStyle="bold"/>
-    <TextView
-        android:id="@+id/txtFullName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="70dp"
-        android:text="Mustapha"
-        android:textSize="30sp"
-        android:textStyle="bold"/>
-    <TextView
-        android:id="@+id/txtPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="08061651401"
-        android:textSize="25sp"
-        android:textStyle="bold"/>
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="30dp"
+    android:text="Accont Info"
+    android:textColor="@color/colorPrimary"
+    android:textSize="30sp"
+    android:textStyle="bold"/>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_margin="10dp"
 
+       android:orientation="horizontal">
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Name: "
+           android:textColor="@color/colorPrimary"
+           android:textSize="20sp"/>
+       <TextView
+           android:id="@+id/txtFullName"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Mustapha"
+           android:textSize="20sp"
+           android:textStyle="bold"/>
+   </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone: "
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/txtPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="08061651401"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Balance: "
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/txtBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="₦0.00"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
@@ -62,7 +99,7 @@
         android:orientation="vertical"
         android:weightSum="2">
         <TextView
-            android:id="@+id/txtItemBought"
+            android:id="@+id/txtCartItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -78,7 +115,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Items Bought"
+            android:text="Cart Items"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="20sp"
             android:textStyle="bold"/>

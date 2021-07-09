@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/root_layout"
     android:layout_height="match_parent"
     tools:context=".Screens.ui.Authentication.Login">
 
@@ -45,8 +46,8 @@
             app:met_floatingLabelText="Phone Number"
             app:met_iconPadding="2dp"
             app:met_iconRight="@drawable/ic_baseline_phone"
-            app:met_maxCharacters="11"
             app:met_minCharacters="11"
+            app:met_maxCharacters="11"
             app:met_primaryColor="@color/colorPrimaryDark"
             app:met_singleLineEllipsis="true" />
 

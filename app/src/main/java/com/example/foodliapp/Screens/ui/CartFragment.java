@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -81,13 +80,12 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
             .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX) // using sandbox
             .clientId(Config.PAY_CLIENT_ID);
     private final int PAYPAL_REQUEST_CODE = 500;
-    public TextView txtTotal, txtSwipeDelete;
+    public TextView txtTotal, txtEmptyCart;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager manager;
     FirebaseDatabase database;
     DatabaseReference requests;
     Button btnPlaceOrder;
-    ImageButton btnDelete;
     APIService mService;
     SwipeRefreshLayout swipeRefreshLayout;
     String address, comment;
@@ -119,9 +117,9 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
         manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
 
-        txtSwipeDelete = root.findViewById(R.id.txtSwipeToDelete);
-        if (cart.size() == 0){
-            txtSwipeDelete.setText("Your cart is empty");
+        if (cart.size() <= 0){
+            txtEmptyCart = root.findViewById(R.id.txtEmptyCart);
+            txtEmptyCart.setText("Your cart is empty");
         }
         //Swipe to delete
         ItemTouchHelper.SimpleCallback itemTouchHelper = new RecyclerItemTouchHelper(0,ItemTouchHelper.LEFT,this);

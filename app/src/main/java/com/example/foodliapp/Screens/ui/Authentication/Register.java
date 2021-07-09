@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import com.example.foodliapp.Common.Common;
 import com.example.foodliapp.Model.User;
 import com.example.foodliapp.R;
 import com.example.foodliapp.Screens.Home;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,15 +29,12 @@ public class Register extends AppCompatActivity {
     MaterialEditText edtName, edtPhone, edtPassword, edtSecureCode;
     Button btnRegister;
     TextView txtRegister, txtSignIn;
+    RelativeLayout rootLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-//        txtRegister = findViewById(R.id.txtRegister);
-//        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Caroline.otf");
-//        txtRegister.setTypeface(face);
-
+        rootLayout = findViewById(R.id.root_layout);
         txtSignIn = findViewById(R.id.txtSignIn);
         txtSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,10 +94,8 @@ public class Register extends AppCompatActivity {
                         }
                     });
                 } else {
-
-                    // TO DO: convert to snack bar ...
-                    Toast.makeText(Register.this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
-                    return;
+                    Snackbar snackbar = Snackbar.make(rootLayout,"Please check your internet connection", Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 }
             }
         });

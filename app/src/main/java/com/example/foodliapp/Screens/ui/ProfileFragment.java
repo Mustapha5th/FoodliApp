@@ -18,6 +18,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.foodliapp.Common.Common;
+import com.example.foodliapp.Model.Favorites;
+import com.example.foodliapp.Model.Order;
 import com.example.foodliapp.R;
 import com.example.foodliapp.Screens.ui.Authentication.Login;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,7 +29,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import dmax.dialog.SpotsDialog;
@@ -36,8 +42,9 @@ import io.paperdb.Paper;
 public class ProfileFragment extends Fragment {
     Button btnLogout;
     CheckBox chkNotification;
-
-    TextView txtFullName, txtPhone,txtBalance, txtChangePassword,txtEditProfile,txtItemBought,txtFavItems;
+    List<Order> cart = new ArrayList<>();
+    List<Favorites> favoritesList = new ArrayList<>();
+    TextView txtFullName, txtPhone,txtBalance, txtChangePassword,txtEditProfile,txtCartItem,txtFavItems;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -49,9 +56,11 @@ public class ProfileFragment extends Fragment {
 
         txtFullName = root.findViewById(R.id.txtFullName);
         txtFullName.setText(Common.currentUser.getName());
-
         txtBalance = root.findViewById(R.id.txtBalance);
-        txtBalance.setText(String.format("₦ %s", Common.currentUser.getBalance()));
+        Locale locale = new Locale("en","NG");
+        NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+        txtBalance.setText(format.format(Common.currentUser.getBalance()));
+
         txtPhone = root.findViewById(R.id.txtPhone);
         txtPhone.setText(Common.currentUser.getPhone());
 
@@ -70,9 +79,10 @@ public class ProfileFragment extends Fragment {
                 showChangePasswordDialog();
             }
         });
-        txtItemBought = root.findViewById(R.id.txtItemBought);
-
+        txtCartItem = root.findViewById(R.id.txtCartItem);
+        txtCartItem.setText(cart.size());
         txtFavItems = root.findViewById(R.id.txtFavItems);
+        txtFavItems.setText(favoritesList.size());
 
 //        String isSubscribe = Paper.book().read("sub_news");
 //        if (isSubscribe == null || TextUtils.isEmpty(isSubscribe) || isSubscribe.equals(false)){

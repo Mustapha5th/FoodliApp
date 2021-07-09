@@ -1,6 +1,9 @@
 package com.example.foodliapp.Screens.ui;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,9 +89,62 @@ public class OrderStatusFragment extends Fragment {
                   @Override
                   public void onClick(View v) {
                       if (adapter.getItem(i).getStatus().equals("0")){
-                          deleteOrder(adapter.getRef(i).getKey());
-                      }else {
-                          Toast.makeText(getContext(), "Sorry Order have already been processed you cannot delete the Order", Toast.LENGTH_SHORT).show();
+                          AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                          builder.setTitle("Delete Order");
+                          builder.setMessage("your order has been placed and is ready to be processed are you sure you want to delete this order?");
+                          builder.setPositiveButton(Html.fromHtml("<font color= '#DE8405'>Yes</font>"), new DialogInterface.OnClickListener() {
+                              @Override
+                              public void onClick(DialogInterface dialog, int which) {
+                                  deleteOrder(adapter.getRef(i).getKey());
+                              }
+                          });
+                          builder.setNegativeButton(Html.fromHtml("<font color= '#DE8405'>No</font>"), new DialogInterface.OnClickListener() {
+                              @Override
+                              public void onClick(DialogInterface dialog, int which) {
+                                  dialog.dismiss();
+                              }
+                          });
+                          // show dialog
+                          builder.show();
+
+                      }else if (adapter.getItem(i).getStatus().equals("1")){
+                          AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                          builder.setTitle("Delete Order");
+                          builder.setMessage("your order is processing are you sure you want to delete this order?");
+                          builder.setPositiveButton(Html.fromHtml("<font color= '#DE8405'>Yes</font>"), new DialogInterface.OnClickListener() {
+                              @Override
+                              public void onClick(DialogInterface dialog, int which) {
+                                  deleteOrder(adapter.getRef(i).getKey());
+                              }
+                          });
+                          builder.setNegativeButton(Html.fromHtml("<font color= '#DE8405'>No</font>"), new DialogInterface.OnClickListener() {
+                              @Override
+                              public void onClick(DialogInterface dialog, int which) {
+                                  dialog.dismiss();
+                              }
+                          });
+                          // show dialog
+                          builder.show();
+                           } else if (adapter.getItem(i).getStatus().equals("2")){
+                          AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                          builder.setTitle("Delete Order");
+                          builder.setMessage("your order has already been processed are you sure you want to delete this order?");
+                          builder.setPositiveButton(Html.fromHtml("<font color= '#DE8405'>Yes</font>"), new DialogInterface.OnClickListener() {
+                              @Override
+                              public void onClick(DialogInterface dialog, int which) {
+                                  deleteOrder(adapter.getRef(i).getKey());
+                              }
+                          });
+                          builder.setNegativeButton(Html.fromHtml("<font color= '#DE8405'>No</font>"), new DialogInterface.OnClickListener() {
+                              @Override
+                              public void onClick(DialogInterface dialog, int which) {
+                                  dialog.dismiss();
+                              }
+                          });
+                          // show dialog
+                          builder.show();
+                      }else{
+                          Toast.makeText(getContext(), "Sorry your order is already processed and is on its way you cant delete this order", Toast.LENGTH_SHORT).show();
                       }
                   }
               });

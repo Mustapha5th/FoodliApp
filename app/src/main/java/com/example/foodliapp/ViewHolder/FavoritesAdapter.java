@@ -24,7 +24,6 @@ import java.util.List;
 public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesViewHolder> {
     private final Context context;
     private final List<Favorites> favoritesList;
-
     public FavoritesAdapter(Context context, List<Favorites> favoritesList) {
         this.context = context;
         this.favoritesList = favoritesList;
