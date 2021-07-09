@@ -27,7 +27,7 @@ public class Register extends AppCompatActivity {
 
     MaterialEditText edtName, edtPhone, edtPassword, edtSecureCode;
     Button btnRegister;
-    TextView txtRegister;
+    TextView txtRegister, txtSignIn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +37,15 @@ public class Register extends AppCompatActivity {
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Caroline.otf");
         txtRegister.setTypeface(face);
 
+        txtSignIn = findViewById(R.id.txtSignIn);
+        txtSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent login = new Intent(Register.this, Login.class);
+                startActivity(login);
+                finish();
+            }
+        });
         edtName = findViewById(R.id.edtName);
         edtPhone = findViewById(R.id.edtPhone);
         edtPassword = findViewById(R.id.edtPassword);

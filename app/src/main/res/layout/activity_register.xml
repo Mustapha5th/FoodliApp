@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="40dp"
-        android:text="Register"
+        android:text="Sign Up"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="50sp"
         android:textStyle="bold|italic"/>
@@ -100,7 +100,7 @@
 
         <Button
             android:id="@+id/btnRegister"
-            android:layout_width="150dp"
+            android:layout_width="300dp"
             android:layout_height="0dp"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
@@ -110,9 +110,36 @@
             android:layout_weight="1"
             android:background="@drawable/rounded_buttons"
             android:shadowRadius="4"
-            android:text="@string/register"
+            android:text="sign up"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="50dp"
+                android:text="Already have an account?"
+                android:textColor="@color/transparentBlack"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/txtSignIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="50dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="       Sign In"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
 
     </LinearLayout>
 </RelativeLayout>

@@ -4,8 +4,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.os.Handler;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +19,6 @@ import com.example.foodliapp.Common.Common;
 import com.example.foodliapp.Model.User;
 import com.example.foodliapp.Screens.Home;
 import com.example.foodliapp.Screens.ui.Authentication.Login;
-import com.example.foodliapp.Screens.ui.Authentication.Register;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,42 +28,47 @@ import com.google.firebase.database.ValueEventListener;
 import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
-    Button btnRegister, btnLogin;
-    TextView txtSlogan;
-
+   private static final int SPLASH_SCREEN = 5000;
+    TextView txtSlogan, txtAppName;
+    ImageView iVStartScreen;
+    Animation topAnim, bottomAnim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN );
         setContentView(R.layout.activity_main);
 
+        topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
+        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
 
-        btnRegister = findViewById(R.id.btnRegister);
-        btnLogin = findViewById(R.id.btnLogin);
+        iVStartScreen = findViewById(R.id.iVStartScreen);
 
+
+
+        // font
         txtSlogan = findViewById(R.id.txtSlogan);
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Caroline.otf");
         txtSlogan.setTypeface(face);
+        txtAppName = findViewById(R.id.txtAppName);
+        Typeface screen = Typeface.createFromAsset(getAssets(), "fonts/Caroline.otf");
+        txtAppName.setTypeface(face);
+        // set Animation
+        iVStartScreen.setAnimation(topAnim);
+        txtSlogan.setAnimation(bottomAnim);
+        txtAppName.setAnimation(bottomAnim);
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(MainActivity.this, Login.class);
+                startActivity(intent);
+                finish();
+            }
+        }, SPLASH_SCREEN);
         // init paper
         Paper.init(this);
 
 
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent login = new Intent(MainActivity.this, Login.class);
-                startActivity(login);
-            }
-        });
-
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent register = new Intent(MainActivity.this, Register.class);
-                startActivity(register);
-            }
-        });
         // check remember
         String user = Paper.book().read(Common.USER_KEY);
         String password = Paper.book().read(Common.PWD_KEY);

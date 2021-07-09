@@ -32,7 +32,7 @@ import io.paperdb.Paper;
 
 public class Login extends AppCompatActivity {
     MaterialEditText edtPhone, edtPassword;
-    TextView txtLogin, txtForgotPassword;
+    TextView txtLogin, txtForgotPassword, txtSignUp;
     Button btnLogin;
     CheckBox checkBoxRemember;
     FirebaseDatabase database;
@@ -46,7 +46,15 @@ public class Login extends AppCompatActivity {
         txtLogin = findViewById(R.id.txtLogin);
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Caroline.otf");
         txtLogin.setTypeface(face);
-
+         txtSignUp = findViewById(R.id.txtSignUp);
+        txtSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent register = new Intent(Login.this, Register.class);
+                startActivity(register);
+                finish();
+            }
+        });
         txtForgotPassword = findViewById(R.id.txtForgetPassword);
         txtForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override

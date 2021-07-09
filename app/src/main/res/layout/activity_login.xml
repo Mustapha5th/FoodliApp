@@ -13,7 +13,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="100dp"
         android:gravity="center"
-        android:text="Login"
+        android:text="Sign In"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="50sp"
         android:textStyle="bold|italic" />
@@ -38,9 +38,15 @@
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorPrimaryDark"
             android:textSize="24sp"
+            app:met_autoValidate="true"
             app:met_baseColor="@color/colorPrimaryDark"
+            app:met_clearButton="true"
+            app:met_errorColor="@color/red"
             app:met_floatingLabel="highlight"
-            app:met_maxCharacters="11"
+            app:met_floatingLabelText="Phone Number"
+            app:met_iconPadding="2dp"
+            app:met_iconRight="@drawable/ic_baseline_phone"
+            app:met_minCharacters="4"
             app:met_primaryColor="@color/colorPrimaryDark"
             app:met_singleLineEllipsis="true" />
 
@@ -51,13 +57,20 @@
             android:layout_marginTop="10dp"
             android:hint="@string/password"
             android:inputType="textPassword"
+            android:lines="1"
             android:text="1234"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorPrimaryDark"
             android:textSize="24sp"
+            app:met_autoValidate="true"
             app:met_baseColor="@color/colorPrimaryDark"
+            app:met_clearButton="true"
+            app:met_errorColor="@color/red"
             app:met_floatingLabel="highlight"
-            app:met_maxCharacters="11"
+            app:met_floatingLabelText="password"
+            app:met_iconLeft="@drawable/ic_baseline_vpn_key"
+            app:met_iconPadding="2dp"
+            app:met_minCharacters="4"
             app:met_primaryColor="@color/colorPrimaryDark"
             app:met_singleLineEllipsis="true" />
         <LinearLayout
@@ -68,35 +81,16 @@
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/chkRemember"
                 style="@style/Material.Drawable.CheckBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:text="Remember me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:gravity="center"
+                android:text="Keep me signed in"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/txtForgetPassword"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_weight="3"
-                android:clickable="true"
-                android:text="@string/forget_password"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="16sp"
-                android:textStyle="" />
-
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="50dp"/>
-
         <Button
             android:id="@+id/btnLogin"
-            android:layout_width="140dp"
+            android:layout_width="300dp"
             android:layout_height="0dp"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
@@ -106,9 +100,47 @@
             android:layout_weight="1"
             android:background="@drawable/rounded_buttons"
             android:shadowRadius="4"
-            android:text="@string/login"
+            android:text="sign in"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
+        <TextView
+            android:id="@+id/txtForgetPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="50dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/forget_password"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            android:textStyle="" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="50dp"
+                android:text="Do you want a new account?"
+                android:textColor="@color/transparentBlack"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/txtSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="50dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="Sign Up"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
     </LinearLayout>
 
