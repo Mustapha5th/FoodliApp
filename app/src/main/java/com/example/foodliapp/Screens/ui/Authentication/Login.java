@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -43,10 +42,12 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         edtPhone = findViewById(R.id.edtPhone);
         edtPassword = findViewById(R.id.edtPassword);
-        txtLogin = findViewById(R.id.txtLogin);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Caroline.otf");
-        txtLogin.setTypeface(face);
-         txtSignUp = findViewById(R.id.txtSignUp);
+
+//        txtLogin = findViewById(R.id.txtLogin);
+//        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Caroline.otf");
+//        txtLogin.setTypeface(face);
+
+        txtSignUp = findViewById(R.id.txtSignUp);
         txtSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

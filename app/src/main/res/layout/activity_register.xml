@@ -11,34 +11,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:text="Sign Up"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="50sp"
         android:textStyle="bold|italic"/>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="0dp"
         android:orientation="vertical">
-
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:hint="@string/name"
+            android:hint="Name"
             android:inputType="text"
             android:text=""
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorPrimaryDark"
             android:textSize="24sp"
+            app:met_autoValidate="true"
             app:met_baseColor="@color/colorPrimaryDark"
+            app:met_clearButton="true"
+            app:met_errorColor="@color/red"
             app:met_floatingLabel="highlight"
-            app:met_maxCharacters="60"
+            app:met_floatingLabelText="Name"
+            app:met_iconPadding="2dp"
+            app:met_minCharacters="4"
             app:met_primaryColor="@color/colorPrimaryDark"
             app:met_singleLineEllipsis="true" />
 
@@ -56,6 +63,7 @@
             app:met_baseColor="@color/colorPrimaryDark"
             app:met_floatingLabel="highlight"
             app:met_maxCharacters="11"
+            app:met_minCharacters="11"
             app:met_primaryColor="@color/colorPrimaryDark"
             app:met_singleLineEllipsis="true" />
 
@@ -73,9 +81,10 @@
             android:textSize="24sp"
             app:met_baseColor="@color/colorPrimaryDark"
             app:met_floatingLabel="highlight"
-            app:met_maxCharacters="11"
+            app:met_minCharacters="4"
             app:met_primaryColor="@color/colorPrimaryDark"
             app:met_singleLineEllipsis="true" />
+
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtsecureCode"
             android:layout_width="match_parent"
@@ -89,52 +98,53 @@
             android:textColorHint="@color/colorPrimaryDark"
             android:textSize="24sp"
             app:met_baseColor="@color/colorPrimaryDark"
+            app:met_errorColor="@color/red"
             app:met_floatingLabel="highlight"
-            app:met_maxCharacters="11"
+            app:met_maxCharacters="6"
+            app:met_minCharacters="4"
             app:met_primaryColor="@color/colorPrimaryDark"
             app:met_singleLineEllipsis="true" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="50dp"/>
 
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="300dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="50dp"
             android:layout_marginRight="5dp"
-            android:layout_weight="1"
             android:background="@drawable/rounded_buttons"
-            android:shadowRadius="4"
+            android:shadowRadius="2"
             android:text="sign up"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="50dp"
+                android:layout_gravity="start"
+                android:layout_marginStart="50dp"
+                android:layout_weight="1"
                 android:text="Already have an account?"
                 android:textColor="@color/transparentBlack"
                 android:textSize="16sp" />
+
             <TextView
                 android:id="@+id/txtSignIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="50dp"
+                android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="       Sign In"
+                android:text="Sign In"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp"
                 android:textStyle="bold" />

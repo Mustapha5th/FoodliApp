@@ -2,7 +2,6 @@ package com.example.foodliapp.Screens.ui.Authentication;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,9 +32,9 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        txtRegister = findViewById(R.id.txtRegister);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Caroline.otf");
-        txtRegister.setTypeface(face);
+//        txtRegister = findViewById(R.id.txtRegister);
+//        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Caroline.otf");
+//        txtRegister.setTypeface(face);
 
         txtSignIn = findViewById(R.id.txtSignIn);
         txtSignIn.setOnClickListener(new View.OnClickListener() {

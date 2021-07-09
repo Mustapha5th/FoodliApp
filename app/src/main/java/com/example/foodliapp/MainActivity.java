@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
    private static final int SPLASH_SCREEN = 5000;
     TextView txtSlogan, txtAppName;
     ImageView iVStartScreen;
-    Animation topAnim, bottomAnim;
+    Animation topAnim, bottomAnim, fromleft;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
+        fromleft = AnimationUtils.loadAnimation(this, R.anim.from_left);
 
         iVStartScreen = findViewById(R.id.iVStartScreen);
 
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         txtAppName.setTypeface(face);
         // set Animation
         iVStartScreen.setAnimation(topAnim);
-        txtSlogan.setAnimation(bottomAnim);
+        txtSlogan.setAnimation(fromleft);
         txtAppName.setAnimation(bottomAnim);
 
         new Handler().postDelayed(new Runnable() {
