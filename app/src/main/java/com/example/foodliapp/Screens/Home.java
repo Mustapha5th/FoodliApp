@@ -32,7 +32,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 public class Home extends AppCompatActivity {
 
 final int SETTINGS_ACTIVITY =1;
-
+    String currentUserPhone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +55,10 @@ final int SETTINGS_ACTIVITY =1;
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference tokens = database.getReference("Tokens");
         Token data = new Token(token,false); // false because this token send from client app
-        tokens.child(Common.currentUser.getPhone()).setValue(data);
+        if (Common.currentUser != null) {
+            currentUserPhone = Common.currentUser.getPhone();
+        }
+        tokens.child(currentUserPhone).setValue(data);
 
     }
 

@@ -6,7 +6,6 @@ public class User {
     private String Phone;
     private String isStaff;
     private String secureCode;
-
     private Object balance;
 
     public Object getBalance() {
@@ -27,7 +26,6 @@ public class User {
         Password = password;
         isStaff = "false";
         this.secureCode = secureCode;
-
 
     }
 

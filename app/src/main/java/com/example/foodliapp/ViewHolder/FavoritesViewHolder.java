@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodliapp.Interface.ItemClickListener;
 import com.example.foodliapp.R;
 
-public class FavoritesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class FavoritesViewHolder extends RecyclerView.ViewHolder //implements View.OnClickListener
+{
 
     public TextView food_name, food_price;
     public ImageView food_image, addToCartIcon;
@@ -32,16 +33,16 @@ public class FavoritesViewHolder extends RecyclerView.ViewHolder implements View
         view_foreground = itemView.findViewById(R.id.view_foreground);
 
 
-        itemView.setOnClickListener(this);
+       // itemView.setOnClickListener(this);
     }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
 
-    @Override
-    public void onClick(View v) {
-        itemClickListener.onClick(v, getAdapterPosition(), false);
-
-    }
+//    @Override
+//    public void onClick(View v) {
+//        itemClickListener.onClick(v, getAdapterPosition(), false);
+//
+//    }
 }

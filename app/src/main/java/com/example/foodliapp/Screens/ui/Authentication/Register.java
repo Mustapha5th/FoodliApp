@@ -50,7 +50,10 @@ public class Register extends AppCompatActivity {
         edtSecureCode = findViewById(R.id.edtsecureCode);
 
         btnRegister = findViewById(R.id.btnRegister);
-
+        if (!Common.isConnectedToInternet(getBaseContext())) {
+            Snackbar snackbar = Snackbar.make(rootLayout,"Please check your internet connection", Snackbar.LENGTH_LONG);
+            snackbar.show();
+        }
         // init Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference table_user = database.getReference("User");
@@ -63,7 +66,7 @@ public class Register extends AppCompatActivity {
                     mDialog.setMessage("Please Wait...");
                     mDialog.show();
 
-                    table_user.addValueEventListener(new ValueEventListener() {
+                    table_user.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (edtPhone.getText().toString().isEmpty() || edtName.getText().toString().isEmpty() || edtPassword.getText().toString().isEmpty()){

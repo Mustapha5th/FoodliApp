@@ -77,13 +77,12 @@ public class Login extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         table_user = database.getReference("User");
         if (!Common.isConnectedToInternet(getBaseContext())) {
-            Toast.makeText(Login.this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
-            return;
+            Snackbar snackbar = Snackbar.make(rootLayout,"Please check your internet connection", Snackbar.LENGTH_LONG);
+            snackbar.show();
         }
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (Common.isConnectedToInternet(getBaseContext())) {
 
                     // save user & password

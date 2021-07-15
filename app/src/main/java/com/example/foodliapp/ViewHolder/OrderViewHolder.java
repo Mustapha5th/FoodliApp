@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodliapp.Interface.ItemClickListener;
 import com.example.foodliapp.R;
 
-public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class OrderViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener
+{
 
 
     public TextView txtOrderId, txtOrderStatus, txtOrderPhone, txtOrderAddress;
@@ -25,7 +26,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnC
         txtOrderStatus = itemView.findViewById(R.id.order_status);
         txtOrderPhone = itemView.findViewById(R.id.order_phone);
         btn_delete = itemView.findViewById(R.id.btn_delete);
-        itemView.setOnClickListener(this);
+      //  itemView.setOnClickListener(this);
 
     }
 

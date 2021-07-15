@@ -40,7 +40,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull FavoritesViewHolder foodViewHolder, int position) {
         foodViewHolder.food_name.setText(favoritesList.get(position).getFoodName());
-        foodViewHolder.food_price.setText(String.format("₦ %s", favoritesList.get(position).getFoodPrice()));
+        foodViewHolder.food_price.setText(String.format("₦%s", favoritesList.get(position).getFoodPrice()));
         Picasso.get().load(favoritesList.get(position).getFoodImage()).into(foodViewHolder.food_image);
 
         foodViewHolder.addToCartIcon.setImageResource(R.drawable.ic_baseline_add_shopping_cart);

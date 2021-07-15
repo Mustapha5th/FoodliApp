@@ -80,7 +80,7 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
             .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX) // using sandbox
             .clientId(Config.PAY_CLIENT_ID);
     private final int PAYPAL_REQUEST_CODE = 500;
-    public TextView txtTotal, txtEmptyCart;
+    public TextView txtTotal;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager manager;
     FirebaseDatabase database;
@@ -117,10 +117,6 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
         manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
 
-        if (cart.size() <= 0){
-            txtEmptyCart = root.findViewById(R.id.txtEmptyCart);
-            txtEmptyCart.setText("Your cart is empty");
-        }
         //Swipe to delete
         ItemTouchHelper.SimpleCallback itemTouchHelper = new RecyclerItemTouchHelper(0,ItemTouchHelper.LEFT,this);
         new ItemTouchHelper(itemTouchHelper).attachToRecyclerView(recyclerView);
@@ -134,8 +130,11 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
             public void onClick(View v) {
                 if (cart.size() > 0)
                     showAlertDialog();
-                else
-                    Toast.makeText(getContext(), "Your cart is empty", Toast.LENGTH_SHORT).show();
+                else{
+                    Snackbar snackbar = Snackbar.make(rootLayout,"Your cart is empty", Snackbar.LENGTH_LONG);
+                    snackbar.setAnchorView(R.id.nav_view);
+                    snackbar.show();
+                }
             }
         });
 
@@ -179,10 +178,10 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
                 new Database(requireContext()).cleanCart(Common.currentUser.getPhone());
                 sendNotificationOrder(order_number);
 
-
-                        Toast.makeText(getContext(), "Thank You, Order is Placed", Toast.LENGTH_SHORT).show();
-                        getActivity().recreate();
-
+                        Snackbar snackbar = Snackbar.make(rootLayout,"Thank You, Order is Placed", Snackbar.LENGTH_LONG);
+                        snackbar.setAnchorView(R.id.nav_view);
+                        snackbar.show();
+                        loadListFood();
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
@@ -216,7 +215,6 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
         alertDialog.setPositiveButton(Html.fromHtml("<font color= '#DE8405'>Yes</font>"), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 // show Paypal payment
                 address = edtAddress.getText().toString();
                 comment = edtComment.getText().toString();
@@ -267,8 +265,10 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
                         //Delete cart
                         new Database(requireContext()).cleanCart(Common.currentUser.getPhone());
                         sendNotificationOrder(order_number);
-                        Toast.makeText(getContext(), "Thank You, Order is Placed", Toast.LENGTH_SHORT).show();
-                        requireActivity().recreate();
+                        loadListFood();
+                        Snackbar snackbar = Snackbar.make(rootLayout,"Thank You, Order is Placed", Snackbar.LENGTH_LONG);
+                        snackbar.setAnchorView(R.id.nav_view);
+                        snackbar.show();
 
     }
                     else if (rdiFoodliBalance.isChecked()){
@@ -320,8 +320,13 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
                                                             @Override
                                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                                 Common.currentUser = snapshot.getValue(User.class);
+                                                                //Delete cart
+                                                                new Database(requireContext()).cleanCart(Common.currentUser.getPhone());
                                                                 sendNotificationOrder(order_number);
-                                                                Toast.makeText(getContext(), "Thank You, Order is Placed", Toast.LENGTH_SHORT).show();
+                                                                loadListFood();
+                                                                Snackbar snackbar = Snackbar.make(rootLayout,"Thank You, Order is Placed", Snackbar.LENGTH_LONG);
+                                                                snackbar.setAnchorView(R.id.nav_view);
+                                                                snackbar.show();
 
                                                             }
 
@@ -338,7 +343,8 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
 
                         }
                                 else {
-                    Toast.makeText(getContext(), "You have insufficient balance", Toast.LENGTH_LONG).show();
+                            Snackbar snackbar = Snackbar.make(rootLayout,"Insufficient Balance please recharge your account to buy with foodli wallet", Snackbar.LENGTH_LONG);
+                            snackbar.show();
                 }
     }
 

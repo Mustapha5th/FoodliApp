@@ -80,9 +80,9 @@ public class ProfileFragment extends Fragment {
             }
         });
         txtCartItem = root.findViewById(R.id.txtCartItem);
-        txtCartItem.setText(cart.size());
+        txtCartItem.setText(""+cart.size());
         txtFavItems = root.findViewById(R.id.txtFavItems);
-        txtFavItems.setText(favoritesList.size());
+        txtFavItems.setText(""+favoritesList.size());
 
 //        String isSubscribe = Paper.book().read("sub_news");
 //        if (isSubscribe == null || TextUtils.isEmpty(isSubscribe) || isSubscribe.equals(false)){

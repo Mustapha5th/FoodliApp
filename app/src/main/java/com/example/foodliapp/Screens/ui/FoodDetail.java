@@ -103,7 +103,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
         // Get Food id from intent
         if (getFragmentManager() != null)
             foodId = getIntent().getStringExtra("CategoryId");
-        if (!foodId.isEmpty()){
+
             if (Common.isConnectedToInternet(getBaseContext())){
             getDetailFood(foodId);
             getRatingFood(foodId);
@@ -115,7 +115,7 @@ public class FoodDetail extends AppCompatActivity implements RatingDialogListene
             }
         }
 
-    }
+
 
     private void getRatingFood(String foodId) {
         Query foodRating = ratingTbl.orderByChild("foodId").equalTo(foodId);
