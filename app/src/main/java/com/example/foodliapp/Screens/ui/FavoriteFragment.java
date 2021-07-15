@@ -64,7 +64,7 @@ public class FavoriteFragment extends Fragment implements RecyclerItemTouchHelpe
     }
 
     private void loadFavorites() {
-        adapter = new FavoritesAdapter(getContext(),new Database(getContext()).getAllFavorites(Common.currentUser.getPhone()));
+        adapter = new FavoritesAdapter(requireContext(),new Database(requireContext()).getAllFavorites(Common.currentUser.getPhone()));
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
     }
@@ -80,7 +80,7 @@ public class FavoriteFragment extends Fragment implements RecyclerItemTouchHelpe
             Favorites deleteItem = ((FavoritesAdapter) recyclerView.getAdapter()).getItem(viewHolder.getAdapterPosition());
             int deleteIndex = viewHolder.getAdapterPosition();
             adapter.removeItem(viewHolder.getAdapterPosition());
-            new Database(getContext()).deleteFromFavorites(deleteItem.getFoodId(), Common.currentUser.getPhone());
+            new Database(requireContext()).deleteFromFavorites(deleteItem.getFoodId(), Common.currentUser.getPhone());
 
             Snackbar snackbar = Snackbar.make(rootLayout, name +" removed from favorite", Snackbar.LENGTH_LONG);
             snackbar.setAnchorView(R.id.nav_view);
@@ -88,7 +88,7 @@ public class FavoriteFragment extends Fragment implements RecyclerItemTouchHelpe
                 @Override
                 public void onClick(View v) {
                     adapter.restoredItem(deleteItem,deleteIndex);
-                    new Database(getContext()).addToFavorites(deleteItem);
+                    new Database(requireContext()).addToFavorites(deleteItem);
 
                 }
             });

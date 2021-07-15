@@ -89,7 +89,7 @@ public class OrderStatusFragment extends Fragment {
                   @Override
                   public void onClick(View v) {
                       if (adapter.getItem(i).getStatus().equals("0")){
-                          AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                          AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
                           builder.setTitle("Delete Order");
                           builder.setMessage("your order has been placed and is ready to be processed are you sure you want to delete this order?");
                           builder.setPositiveButton(Html.fromHtml("<font color= '#DE8405'>Yes</font>"), new DialogInterface.OnClickListener() {
@@ -108,7 +108,7 @@ public class OrderStatusFragment extends Fragment {
                           builder.show();
 
                       }else if (adapter.getItem(i).getStatus().equals("1")){
-                          AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                          AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
                           builder.setTitle("Delete Order");
                           builder.setMessage("your order is processing are you sure you want to delete this order?");
                           builder.setPositiveButton(Html.fromHtml("<font color= '#DE8405'>Yes</font>"), new DialogInterface.OnClickListener() {
@@ -126,7 +126,7 @@ public class OrderStatusFragment extends Fragment {
                           // show dialog
                           builder.show();
                            } else if (adapter.getItem(i).getStatus().equals("2")){
-                          AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                          AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
                           builder.setTitle("Delete Order");
                           builder.setMessage("your order has already been processed are you sure you want to delete this order?");
                           builder.setPositiveButton(Html.fromHtml("<font color= '#DE8405'>Yes</font>"), new DialogInterface.OnClickListener() {

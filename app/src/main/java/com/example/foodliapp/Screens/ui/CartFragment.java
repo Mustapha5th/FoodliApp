@@ -218,11 +218,11 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
                 // show Paypal payment
                 address = edtAddress.getText().toString();
                 comment = edtComment.getText().toString();
-                if (address.isEmpty() ){
+                if (address.isEmpty()){
                     Toast.makeText(getContext(), "Please enter your delivery address", Toast.LENGTH_LONG).show();
                 }else {
                     if (!rdiCOD.isChecked() && !rdiPaypal.isChecked() && !rdiFoodliBalance.isChecked()) {
-                        Toast.makeText(getContext(), "Please select payment option", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Please choose payment option", Toast.LENGTH_LONG).show();
                     }
                     else if (rdiPaypal.isChecked()) {
                         String formatAmount = txtTotal.getText().toString()
@@ -258,17 +258,15 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
                                 cart
         );
                         // Submit to Firebase
-        // Using System.currentMilli to key
+                        // Using System.currentMilli to key
                         String order_number = String.valueOf(System.currentTimeMillis());
                         requests.child(order_number)
                                 .setValue(request);
                         //Delete cart
                         new Database(requireContext()).cleanCart(Common.currentUser.getPhone());
-                        sendNotificationOrder(order_number);
                         loadListFood();
-                        Snackbar snackbar = Snackbar.make(rootLayout,"Thank You, Order is Placed", Snackbar.LENGTH_LONG);
-                        snackbar.setAnchorView(R.id.nav_view);
-                        snackbar.show();
+                        sendNotificationOrder(order_number);
+                        Toast.makeText(requireContext(), "Thank You, Your order has been placed", Toast.LENGTH_SHORT).show();
 
     }
                     else if (rdiFoodliBalance.isChecked()){
@@ -300,6 +298,8 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
                                     .setValue(request);
                             //Delete cart
                             new Database(requireContext()).cleanCart(Common.currentUser.getPhone());
+                            Toast.makeText(requireContext(), "Thank You, Your order has been placed", Toast.LENGTH_SHORT).show();
+                            loadListFood();
                             // update balance
                             double balance = Double.parseDouble(Common.currentUser.getBalance().toString()) - amount;
                             Map<String ,Object> update_balance = new HashMap<>();
@@ -320,14 +320,6 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
                                                             @Override
                                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                                 Common.currentUser = snapshot.getValue(User.class);
-                                                                //Delete cart
-                                                                new Database(requireContext()).cleanCart(Common.currentUser.getPhone());
-                                                                sendNotificationOrder(order_number);
-                                                                loadListFood();
-                                                                Snackbar snackbar = Snackbar.make(rootLayout,"Thank You, Order is Placed", Snackbar.LENGTH_LONG);
-                                                                snackbar.setAnchorView(R.id.nav_view);
-                                                                snackbar.show();
-
                                                             }
 
                                                             @Override
@@ -411,7 +403,7 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
     }
 
     private void loadListFood() {
-        cart = new Database(requireContext()).getCart(Common.currentUser.getPhone());
+        cart = new Database(getContext()).getCart(Common.currentUser.getPhone());
         adapter = new CartAdapter(cart, this);
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
