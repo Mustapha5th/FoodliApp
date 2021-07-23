@@ -27,7 +27,6 @@ import com.example.foodliapp.Screens.ui.Settings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 public class Home extends AppCompatActivity {
 
@@ -48,7 +47,7 @@ final int SETTINGS_ACTIVITY =1;
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        updateToken(FirebaseInstanceId.getInstance().getToken());
+      //  updateToken(FirebaseInstanceId.getInstance().getToken());
     }
 
     private void updateToken(String token) {
@@ -58,7 +57,7 @@ final int SETTINGS_ACTIVITY =1;
         if (Common.currentUser != null) {
             currentUserPhone = Common.currentUser.getPhone();
         }
-        tokens.child(currentUserPhone).setValue(data);
+//        tokens.child(currentUserPhone).setValue(data);
 
     }
 
@@ -69,6 +68,9 @@ final int SETTINGS_ACTIVITY =1;
             case R.id.menu_settings:
                 startActivityForResult(new Intent(this, Settings.class), SETTINGS_ACTIVITY);
                  break;
+            case R.id.menu_refresh:
+                recreate();
+                break;
             case R.id.menu_search:
                 startActivity(new Intent(Home.this, SearchActivity.class));
                 break;

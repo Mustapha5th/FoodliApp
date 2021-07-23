@@ -253,7 +253,7 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
                                 Common.currentUser.getName(),
                                 "0",
                                 "Unpaid",
-                                "Foodli Balance",
+                                "Cash on Delivery",
                                 comment,
                                 cart
         );
@@ -298,6 +298,7 @@ public class CartFragment extends Fragment implements RecyclerItemTouchHelperLis
                                     .setValue(request);
                             //Delete cart
                             new Database(requireContext()).cleanCart(Common.currentUser.getPhone());
+                            sendNotificationOrder(order_number);
                             Toast.makeText(requireContext(), "Thank You, Your order has been placed", Toast.LENGTH_SHORT).show();
                             loadListFood();
                             // update balance

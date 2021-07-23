@@ -30,7 +30,8 @@
            android:layout_height="wrap_content"
            android:text="Name: "
            android:textColor="@color/colorPrimary"
-           android:textSize="20sp"/>
+           android:textSize="20sp"
+           android:textStyle="bold"/>
        <TextView
            android:id="@+id/txtFullName"
            android:layout_width="wrap_content"
@@ -50,7 +51,8 @@
             android:layout_height="wrap_content"
             android:text="Phone: "
             android:textColor="@color/colorPrimary"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/txtPhone"
             android:layout_width="wrap_content"
@@ -70,7 +72,8 @@
             android:layout_height="wrap_content"
             android:text="Balance: "
             android:textColor="@color/colorPrimary"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/txtBalance"
             android:layout_width="wrap_content"
@@ -86,88 +89,7 @@
         android:layout_marginEnd="15dp"
         android:background="@android:color/darker_gray"
         android:padding="20dp"/>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="10dp"
-    android:weightSum="2">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:weightSum="2">
-        <TextView
-            android:id="@+id/txtCartItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="1"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Cart Items"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:weightSum="2">
-        <TextView
-            android:id="@+id/txtFavItems"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="2"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Favorite Items"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
-
-    </LinearLayout>
-</LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:background="@android:color/darker_gray"
-        android:padding="20dp"/>
-<!--    <CheckBox-->
-<!--       android:layout_marginStart="20dp"-->
-<!--        android:id="@+id/chkNotification"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Notifications"-->
-<!--        android:textColor="@color/colorPrimaryDark"/>-->
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
@@ -183,24 +105,24 @@
         android:orientation="horizontal"
         android:padding="8dp">
 
-<!--        <ImageView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:src="@drawable/ic_baseline_person"/>-->
-<!--        <TextView-->
-<!--            android:id="@+id/txtEditProfile"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center_horizontal"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:clickable="true"-->
-<!--            android:focusable="true"-->
-<!--            android:gravity="center"-->
-<!--            android:text="Edit Profile"-->
-<!--            android:textSize="20sp"-->
-<!--            android:textStyle="bold" />-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_baseline_person"/>
+        <TextView
+            android:id="@+id/txtEditName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="Edit Name"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
     <View
@@ -237,40 +159,8 @@
             android:textStyle="bold" />
 
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:background="@android:color/darker_gray"
-        android:padding="20dp"/>
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:clickable="true"-->
-<!--        android:focusable="true"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:padding="8dp">-->
-<!--        <ImageView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:src="@drawable/ic_baseline_delete"/>-->
-<!--        <TextView-->
-<!--            android:id="@+id/txtDeleteAccount"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center_horizontal"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:clickable="true"-->
-<!--            android:focusable="true"-->
-<!--            android:gravity="center"-->
-<!--            android:text="Delete Account"-->
-<!--            android:textSize="20sp"-->
-<!--            android:textStyle="bold" />-->
 
-<!--    </LinearLayout>-->
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"

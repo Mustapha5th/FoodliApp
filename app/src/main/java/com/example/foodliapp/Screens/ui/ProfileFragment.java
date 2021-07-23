@@ -44,7 +44,7 @@ public class ProfileFragment extends Fragment {
     CheckBox chkNotification;
     List<Order> cart = new ArrayList<>();
     List<Favorites> favoritesList = new ArrayList<>();
-    TextView txtFullName, txtPhone,txtBalance, txtChangePassword,txtEditProfile,txtCartItem,txtFavItems;
+    TextView txtFullName, txtPhone,txtBalance, txtChangePassword,txtEditName;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -65,13 +65,13 @@ public class ProfileFragment extends Fragment {
         txtPhone.setText(Common.currentUser.getPhone());
 
         Paper.init(requireContext());
-//        txtEditProfile = root.findViewById(R.id.txtEditProfile);
-//        txtEditProfile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
+        txtEditName = root.findViewById(R.id.txtEditName);
+        txtEditName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showEditNameDialog();
+            }
+        });
         txtChangePassword = root.findViewById(R.id.txtChangePassword);
         txtChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,10 +79,7 @@ public class ProfileFragment extends Fragment {
                 showChangePasswordDialog();
             }
         });
-        txtCartItem = root.findViewById(R.id.txtCartItem);
-        txtCartItem.setText(""+cart.size());
-        txtFavItems = root.findViewById(R.id.txtFavItems);
-        txtFavItems.setText(""+favoritesList.size());
+
 
 //        String isSubscribe = Paper.book().read("sub_news");
 //        if (isSubscribe == null || TextUtils.isEmpty(isSubscribe) || isSubscribe.equals(false)){
@@ -154,7 +151,7 @@ public class ProfileFragment extends Fragment {
                     if (edtNewPassword.getText().toString().equals(edtConfirmPassword.getText().toString())){
 
                         Map<String,Object> passwordUpdate = new HashMap<>();
-                        passwordUpdate.put("Password",edtNewPassword.getText());
+                        passwordUpdate.put("Password",edtNewPassword.getText().toString());
                         // Make Update
                         DatabaseReference user = FirebaseDatabase.getInstance().getReference("User");
                         user.child(Common.currentUser.getPhone())
@@ -164,7 +161,7 @@ public class ProfileFragment extends Fragment {
                                     public void onComplete(@NonNull Task<Void> task) {
                                         waitingDialog.dismiss();
                                         Toast.makeText(requireContext(), "Password updated", Toast.LENGTH_SHORT).show();
-
+                                        requireActivity().recreate();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -182,6 +179,60 @@ public class ProfileFragment extends Fragment {
                     Toast.makeText(requireContext(), "Wrong old password", Toast.LENGTH_SHORT).show();
                 }
             }
+        });
+        builder.setNegativeButton(Html.fromHtml("<font color= '#DE8405'>CANCEL</font>"), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        // show dialog
+        builder.show();
+
+    }
+    private void showEditNameDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Edit Name");
+        builder.setMessage("Please fill correct information");
+        LayoutInflater inflater =  LayoutInflater.from(requireContext());
+        View layout_edit_profile = inflater.inflate(R.layout.edit_profile_layout, null);
+
+        MaterialEditText edtName = layout_edit_profile.findViewById(R.id.edtName);
+        edtName.setText(Common.currentUser.getName());
+        builder.setIcon(R.drawable.ic_baseline_person);
+        builder.setView(layout_edit_profile);
+        builder.setPositiveButton(Html.fromHtml("<font color= '#DE8405'>SAVE</font>"), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                //Change password
+
+                AlertDialog waitingDialog = new SpotsDialog(requireContext());
+                waitingDialog.show();
+
+                        Map<String,Object> profileUpdate = new HashMap<>();
+                        profileUpdate.put("Name",edtName.getText().toString());
+                        // Make Update
+                        DatabaseReference user = FirebaseDatabase.getInstance().getReference("User");
+                        user.child(Common.currentUser.getPhone())
+                                .updateChildren(profileUpdate)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        waitingDialog.dismiss();
+                                        Toast.makeText(requireContext(), "Username updated", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(requireContext(), "Error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+                    }
+
+
         });
         builder.setNegativeButton(Html.fromHtml("<font color= '#DE8405'>CANCEL</font>"), new DialogInterface.OnClickListener() {
             @Override

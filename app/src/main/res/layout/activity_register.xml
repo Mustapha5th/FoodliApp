@@ -46,7 +46,7 @@
             app:met_floatingLabel="highlight"
             app:met_floatingLabelText="Name"
             app:met_iconPadding="2dp"
-            app:met_minCharacters="4"
+
             app:met_primaryColor="@color/colorPrimaryDark"
             app:met_singleLineEllipsis="true" />
 
@@ -63,7 +63,7 @@
             android:textSize="24sp"
             app:met_baseColor="@color/colorPrimaryDark"
             app:met_floatingLabel="highlight"
-            app:met_maxCharacters="11"
+
             app:met_minCharacters="11"
             app:met_primaryColor="@color/colorPrimaryDark"
             app:met_singleLineEllipsis="true" />
